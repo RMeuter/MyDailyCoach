@@ -1,0 +1,21 @@
+{
+    "activite" :[
+        {
+            "name":"Meditation",
+            "pic":"src/pic/img.png",
+            "desc":"La méditation est une activité procurant une force de réconfort et fournit à la suite de celui-ci un bien être",
+            "url":"https://www.youtube.com/watch?v=QjoZfET5kJ8",
+            "IntenDay" : 5,
+            "PointBienEtre": 10
+        },
+        {
+            "name":"Relaxation",
+            "pic":"src/pic/img.png",
+            "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
+            "url":"https://www.youtube.com/watch?v=I2C7nvK7GMY",
+            "IntenDay" : 1,
+            "PointBienEtre": 2
+        }
+    ]
+
+}
