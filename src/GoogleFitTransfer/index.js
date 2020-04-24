@@ -16,25 +16,31 @@ const bodyParser = require("body-parser")
 const axios = require("axios");
 
 // Happy Evening => 
-//var IdClient = "776464730949-n570eg17u5j00g15rpdpu85phhjblvdi.apps.googleusercontent.com";
-//var SecretKey = "O2D_8jTV7_R5u4ySAddVCSjA";
+var IdClient = "776464730949-n570eg17u5j00g15rpdpu85phhjblvdi.apps.googleusercontent.com";
+var SecretKey = "O2D_8jTV7_R5u4ySAddVCSjA";
 // MyDailyCoach =>
- var IdClient = "869369705480-oqi8167kfnjj8k7gon5fvbj8e2mu7k85.apps.googleusercontent.com"
- var SecretKey = "vhlZ0IdfUne9mZUvFhFGqKCu"
+// var IdClient = "869369705480-oqi8167kfnjj8k7gon5fvbj8e2mu7k85.apps.googleusercontent.com"
+// var SecretKey = "vhlZ0IdfUne9mZUvFhFGqKCu"
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 
 /**
- * Voir les liens :
- * - https://developers.google.com/people/quickstart/nodejs
+ * Voir les liens utiles :
+ * - Integration auth :https://developers.google.com/people/quickstart/nodejs
  * - https://developers.google.com/fit/datatypes/activity
- * 
+ * - Integration auth + data :https://github.com/googleapis/google-api-nodejs-client/tree/master/src/apis/fitness
+ * - Integration auth + data :https://stackoverflow.com/questions/52233038/how-to-get-weight-data-from-google-fitness-api
+ * - S'entrainer et data : https://developers.google.com/fit/rest/v1/reference/users/dataset/aggregate
+ * - https://ithoughthecamewithyou.com/post/export-google-fit-daily-steps-to-a-google-sheet
+ * - Integration auth: https://firebase.google.com/docs/auth
  * 
  * 
 */
 
 app.get("/ting", (req, res) => {
+
+    // #################> J'ai besoin de ça seulement
     const oauth2Client = new google.auth.OAuth2(
     //client id
     IdClient,
@@ -43,18 +49,15 @@ app.get("/ting", (req, res) => {
     // link to redirect
     "http://localhost:1234/steps"
     )
+    // https://www.googleapis.com/auth/fitness.body.read
     const scopes = ["https://www.googleapis.com/auth/fitness.activity.read profile email openid"] 
     
-
     const url = oauth2Client.generateAuthUrl({
         access_type: "offline",
-        scope: scopes,
-        state: JSON.stringify({
-            callbackUrl : req.body.callbackUrl,
-            userID: req.body.userID
-        })
+        scope: scopes
     });
-
+    // #################< fin J'ai besoin de ça seulement
+    
     request(url, (err, response, body) => {
         console.log("error:", err);
         console.log("statusCode: ", response && response.statusCode);
@@ -67,6 +70,7 @@ app.get("/steps",async (req, res)=> {
     const queryURL = new urlParse(req.url);
     const code = queryParse.parse(queryURL.query).code;
     
+    // #################> J'ai besoin de ça seulement + du code avant
     const oauth2Client = new google.auth.OAuth2(
         //client id
         IdClient,
@@ -93,34 +97,35 @@ app.get("/steps",async (req, res)=> {
             "Content-Type":"application/json",
             url:"https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
             data: { // Comment faire ces demandes : https://developers.google.com/fit/rest/v1/data-sources
-                aggregateBy: [{
+                aggregateBy: [
+                    {
                     dataTypeName:"com.google.step_count.delta",
                     dataSourceId:"derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
-                }],
+                }/*,
+                {
+                    dataTypeName:"com.google.weight",
+                    dataSourceId:"derived:com.google.weight:com.google.android.gms:merge_weight"
+                }*/
+            ],
                 bucketByTime: { durationMillis: 3600000 }, // recuperation par seau de temps (soit des données toutes les heures ici)
                 startTimeMillis:  actuDate.setDate(actuDate.getDate() - 1), // date du jour de départ
                 endTimeMillis: actuDate.setDate(actuDate.getDate() + 1)  // date du jour de fin
               },
         }
         const result = await axios(obj);
-        //console.log(result);
         stepArray = result.data.bucket;
-        //console.log(stepArray );
+        //console.log(result.data);
     } catch(e){
-        // result.res.statusCode
         console.log("erreur: "+e );
     }
-    ///*
-    //console.log("Les points \n\n\n\n");
-    //console.log(points);
     try {
         let valueSteps = []
         for(const dataset of stepArray){
+            valueSteps.push({"temps":dataset.startTimeMillis});
             for(const points of dataset.dataset){
                 for(const steps of points.point){
                     for(const v of steps.value){
-                        console.log(v.intVal);
-                        valueSteps.push(v.intVal)
+                        valueSteps[valueSteps.length - 1]["steps"] = v.intVal 
                     }
                 }
             }
@@ -129,7 +134,7 @@ app.get("/steps",async (req, res)=> {
     } catch(e){
         console.log(e);
     }
-    //*/
+    // ################# J'ai besoin de ça seulement
 });
 
 
