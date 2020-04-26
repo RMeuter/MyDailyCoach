@@ -2,20 +2,11 @@
   <div id="app">
     <header>
       <h1>
-        <router-link to="/countries">My Daily Coach</router-link>
+        <router-link to="/master">My Daily Coach</router-link>
       </h1>
     </header>
-
-    <transition name="fade" mode="out-in">
-      <router-view class="view"></router-view>
-    </transition>
     <footer>
       <p class="title">Application bien-être</p>
-      <p class="credits">
-        Icons made by
-        <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from
-        <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
-      </p>
     </footer>
   </div>
 </template>
