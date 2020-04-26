@@ -13,18 +13,18 @@
 </template>
 
 <script>
-import Team from "../models/Team";
+import Activity from "../models/Activity";
 
 export default {
   name: "Country",
   props: {
-    team: Team
+    activity: Activity
   },
   methods: {
   },
   computed: {
     css_styles() {
-      return { color: this.team.color }; //création dynamique de style css
+      return { color: this.activity.color }; //création dynamique de style css
     }
   }
 };
