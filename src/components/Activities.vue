@@ -3,10 +3,10 @@
     <div class="country" :style="css_styles">
       <router-link
         :style="css_styles"
-        :to="{name:'details', params:{team:team,countryName:team.name}}"
+        :to="{name:'details', params:{activity:activity,countryName:activity.name}}"
       >
         <img class="flag" :src="get_flag_img()" />
-        <h2>{{team.name}}</h2>
+        <h2>{{activity.name}}</h2>
       </router-link>
     </div>
   </section>
