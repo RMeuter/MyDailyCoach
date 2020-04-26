@@ -1,10 +1,13 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
+import * as firebase from "firebase";
+// ############# Components #############
 import Master from "../components/Master";
 import Signin from "../components/Signin";
 import Stats from '../components/StatsUser.vue';
-import * as firebase from "firebase";
+import Recom from "../components/RecommandationUser.vue";
+import Activities from "../components/Activities.vue";
 
 Vue.use(Router);
 
@@ -21,7 +24,7 @@ const router = new Router({
             component: Signin,
         },
         {
-            path: '/countries',
+            path: '/home',
             name: 'master',
             component: Master,
             meta: {
@@ -30,10 +33,26 @@ const router = new Router({
         },
         {
             path: '/',
-            name: 'mine',
+            name: 'stats',
             component: Stats,
             meta: {
-                requiresAuth: false
+                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
+            }
+        },
+        {
+            path: '/activities',
+            name: 'activities',
+            component: Activities,
+            meta: {
+                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
+            }
+        },
+        {
+            path: '/myDailyActivity',
+            name: 'myDailyActivity',
+            component: Recom,
+            meta: {
+                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
             }
         }
         

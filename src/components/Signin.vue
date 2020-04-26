@@ -1,7 +1,7 @@
 <template>
   <div>
     <button @click="signin" class="btn">
-      Connection via Google
+      Connection par Google uniquement
     </button>
     <div class="success" v-if="success">{{success}}</div>
   </div>
@@ -30,7 +30,7 @@ export default {
       .signInWithPopup(provider)
       .then(result => {
         console.log(result.user);
-        this.$router.replace({ name: "master" });
+        this.$router.replace({ name: "stats" });
       }).catch(error =>{
         console.log(error);
       });

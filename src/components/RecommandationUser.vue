@@ -24,7 +24,7 @@ import { mapGetters } from "vuex";
 import * as firebase from "firebase";
 
 export default {
-  name: "Master",
+  name: "Recommandation",
   methods: {
     signOut() {
       firebase
