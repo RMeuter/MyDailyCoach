@@ -2,8 +2,7 @@
   <div>
     <header>
       <template v-if="user.loggedIn">
-        <div class="display-name">{{user.data.displayName}} is logged in</div>
-        <!-- <button class="btn" @click="diplay_user_var">Try boy</button> !-->
+        <div class="display-name">{{user.data.displayName}} is logged in</div>        
         <button class="nav-link signout" @click.prevent="signOut">Sign Out</button>
       </template>
       <template v-else>
@@ -24,7 +23,6 @@ import { mapGetters } from "vuex";
 
 import * as firebase from "firebase";
 
-
 export default {
   name: "Master",
   methods: {
@@ -38,6 +36,7 @@ export default {
           });
         });
     },
+    
   },
   computed: {
     ...mapGetters({
