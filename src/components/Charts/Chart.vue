@@ -1,31 +1,31 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import Range from "../utils/Range";
-import Team from "../models/Team";
+import Range from "../../utils/Range";
+import data from "../../JsonFile/Step.json"
+
 
 export default {
   extends: Bar,
+  methods:{
+    
+  },
   data() {
     return {
       chartdata: {
-        labels: Range(1930, 2020, 4),
+        labels: Range(0, 23, 1),
         datasets: [
-          {
-            label: "World Cup",
-            backgroundColor: "#f0c419",
-            data: this.team.data
-          }
-        ]
-      },
+            {
+              label: 'Pas dans votre journée',
+              backgroundColor: '#2090DB',
+              data: data.steps
+            }
+          ]},
       options: {
         responsive: true,
         maintainAspectRatio: false
       }
     };
-  },
-  props: {
-    team: Team
   },
   mounted() {
     this.renderChart(this.chartdata, this.options);

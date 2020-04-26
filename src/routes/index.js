@@ -2,8 +2,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Master from "../components/Master";
-import Details from "../components/Details";
 import Signin from "../components/Signin";
+import Stats from '../components/StatsUser.vue';
 import * as firebase from "firebase";
 
 Vue.use(Router);
@@ -29,14 +29,14 @@ const router = new Router({
             }
         },
         {
-            path: '/countries/:countryName',
-            name: 'details',
-            component: Details,
-            props: true,
+            path: '/',
+            name: 'mine',
+            component: Stats,
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             }
         }
+        
     ]
 });
 
