@@ -8,14 +8,14 @@ import "@firebase/firestore";
 
 
 const config = {
-    apiKey: "AIzaSyCa1bitrBaEp9Vlv8oZ4sXG6LIAM9kvTRE",
-    authDomain: "anxietyapp-8522e.firebaseapp.com",
-    databaseURL: "https://anxietyapp-8522e.firebaseio.com",
-    projectId: "anxietyapp-8522e",
-    storageBucket: "anxietyapp-8522e.appspot.com",
-    messagingSenderId: "869369705480",
-    appId: "1:869369705480:web:daef822609231857764dbd",
-    measurementId: "G-DX65969PXM"
+  apiKey: "AIzaSyD6czB7vsdnpAFW_NOS6tGyNGkzawNGGZI",
+  authDomain: "happyevening.firebaseapp.com",
+  databaseURL: "https://happyevening.firebaseio.com",
+  projectId: "happyevening",
+  storageBucket: "happyevening.appspot.com",
+  messagingSenderId: "776464730949",
+  appId: "1:776464730949:web:28ccf2bd57a7afa5350c2c",
+  measurementId: "G-KM3FPZMGT5"
   };
 
 firebase.initializeApp(config);

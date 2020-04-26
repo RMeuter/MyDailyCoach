@@ -87,7 +87,7 @@ app.get("/steps",async (req, res)=> {
     let stepArray = [];
 
     try {
-        let actuDate = new Date();
+        let actuDate = new Date(1587679197864);
         
         let obj = {
             method: "POST",
@@ -98,17 +98,34 @@ app.get("/steps",async (req, res)=> {
             url:"https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
             data: { // Comment faire ces demandes : https://developers.google.com/fit/rest/v1/data-sources
                 aggregateBy: [
-                    {
+                {
+                    dataTypeName: "com.google.heart_minutes"
+                  },
+                /*  
+                {
                     dataTypeName:"com.google.step_count.delta",
                     dataSourceId:"derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
-                }/*,
+                }, 
                 {
                     dataTypeName:"com.google.weight",
                     dataSourceId:"derived:com.google.weight:com.google.android.gms:merge_weight"
-                }*/
+                }
+                Autre type de data :
+                => activity.read
+                - com.google.heart_minutes.summary
+                - com.google.heart_rate.summary
+                - com.google.activity.segment
+                - com.google.active_minutes
+                => localisation.read
+                - com.google.speed
+                => body.read
+                - com.google.heart_rate.bpm
+
+                
+                */
             ],
                 bucketByTime: { durationMillis: 3600000 }, // recuperation par seau de temps (soit des données toutes les heures ici)
-                startTimeMillis:  actuDate.setDate(actuDate.getDate() - 1), // date du jour de départ
+                startTimeMillis:  actuDate.setDate(actuDate.getDate()), // date du jour de départ
                 endTimeMillis: actuDate.setDate(actuDate.getDate() + 1)  // date du jour de fin
               },
         }
@@ -119,18 +136,34 @@ app.get("/steps",async (req, res)=> {
         console.log("erreur: "+e );
     }
     try {
-        let valueSteps = []
+        //console.log(stepArray)
+        let valueActivity = {
+            "time": [],
+            "steps":[],
+            "activity":[],
+        } 
+
         for(const dataset of stepArray){
-            valueSteps.push({"temps":dataset.startTimeMillis});
+            valueActivity.time.push(dataset.startTimeMillis);
+            //console.log("\n\n ############## dataset "+ valueActivity.time[valueActivity.time.length - 1]);
+            //console.log(dataset);
             for(const points of dataset.dataset){
+                //console.log("points \n\n ");
+                //console.log(points);
+                let ordre = 1;
+                valueActivity.activity.push([]);
                 for(const steps of points.point){
+                    //console.log("steps \n\n");
+                    console.log(steps);
                     for(const v of steps.value){
-                        valueSteps[valueSteps.length - 1]["steps"] = v.intVal 
+                        if (ordre==1)  valueActivity.activity[valueActivity.activity.length-1].push(v.fpVal);
+                        else valueActivity.activity[valueActivity.activity.length-1].push(v.intVal);
+                        ordre ++;
                     }
                 }
             }
         }
-        console.log(valueSteps);
+        console.log(valueActivity);
     } catch(e){
         console.log(e);
     }
