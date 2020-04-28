@@ -23,6 +23,22 @@ import { mapGetters } from "vuex";
 
 import * as firebase from "firebase";
 
+/**
+ * Savoir l'intensité d'éffort de la journée sera basé sur 
+ * l'éffort et le temps d'éffort 
+ * Au début recommandation aléatoire, puis avec les points
+ * et enfin algo ML
+ * 
+ * Pour l'ajout des points on peut essayer de voir du coté de sa moyenne
+ * habituelle on prend le summary a partir des 3 dernières
+ * semaines (temps de mise en place des habitudes) (merci le bucket !)
+ * selon google => moyenne
+ * Si passe au dessus il y a plus d'éffort..
+ * On additionne par variable et par le taux de dépassement
+ * exemple : moyenne 1000 pas jour
+ * S'il fait 3000 pas (il a un ratio de 3x son score habituelle donc
+ * plus trois points !)
+ */
 export default {
   name: "Recommandation",
   methods: {
