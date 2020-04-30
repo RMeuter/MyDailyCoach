@@ -5,7 +5,6 @@
         <router-link to="/master">My Daily Coach</router-link>
       </h1>
     </header>
-    //ajout de la partie balise transition (permet d'afficher les composant selon le router dans l'app)
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
