@@ -32,7 +32,7 @@ const router = new Router({
             }
         },
         {
-            path: '/',
+            path: '/stats',
             name: 'stats',
             component: Stats,
             meta: {
@@ -40,7 +40,7 @@ const router = new Router({
             }
         },
         {
-            path: '/activities',
+            path: '/',//activities',
             name: 'activities',
             component: Activities,
             meta: {
@@ -54,20 +54,22 @@ const router = new Router({
             meta: {
                 requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
             }
-        }
-        
+        }, 
+
     ]
 });
 
 router.beforeEach((to, from, next) => {
     const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
     const currentUser = firebase.auth().currentUser
-    console.log("require :"+requiresAuth);
-    console.log("current :"+currentUser);
     if (requiresAuth && !currentUser) {
         next('/signin')
     } else if (requiresAuth && currentUser) {
         next()
+    }else if (!to.matched.length && (requiresAuth && currentUser)){ // Pour les erreur 404 si connecter 
+        next("/home")
+    }else if (!to.matched.length && (requiresAuth && !currentUser)){ // Pour les erreur 404 si non connecter
+        next("/signin")
     } else {
         next()
     }
