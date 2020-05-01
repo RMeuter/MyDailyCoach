@@ -3,7 +3,7 @@
         {
             "name":"Meditation",
             "CATEGORIE":"Relaxation",
-            "pic":"src/pic/img.png",
+            "image":"meditation.jpg",
             "desc":"La méditation est une activité procurant une force de réconfort et fournit à la suite de celui-ci un bien être",
             "url":"https://www.youtube.com/watch?v=QjoZfET5kJ8",
             "IntenDay" : 5,
@@ -12,7 +12,7 @@
         {
             "name":"Maintenir son souffle",
             "CATEGORIE":"Relaxation",
-            "pic":"src/pic/img.png",
+            "image":"souffle.jpg",
             "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
             "url":"https://www.youtube.com/watch?v=I2C7nvK7GMY",
             "IntenDay" : 1,
