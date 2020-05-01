@@ -16,7 +16,7 @@
                 </b-row>
                 <b-row>
                   <b-col>  
-                    <b-img thumbnail fluid :src="get_img_activite(activite)" alt="Image 1">yep</b-img>
+                    <b-img thumbnail fluid :src="get_img_activite(activite)" :alt="activite.name">yep</b-img>
                   </b-col>
                   <b-col>
                     <p class="mb-1">
