@@ -1,32 +1,72 @@
 <template>
-  <section class="container">
-    <div class="country" :style="css_styles">
-      <router-link
-        :style="css_styles"
-        :to="{name:'details', params:{activity:activity,countryName:activity.name}}"
-      >
-        <img class="flag" :src="get_flag_img()" />
-        <h2>{{activity.name}}</h2>
-      </router-link>
-    </div>
-  </section>
+  <div>
+    <b-container>
+      <b-row>
+        <b-col>
+          <b-list-group>
+            <b-list-group-item href="#" active 
+            class="flex-column align-items-start bg-dark"
+            v-for="activite in activities" 
+            :key="activite">
+              <b-container>
+                <b-row>
+                  <b-col class="mb-4 text-center">
+                    <h5 class="mb-1">{{activite.name}}</h5>  
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col>  
+                    <b-img thumbnail fluid :src="get_img_activite(activite)" alt="Image 1">yep</b-img>
+                  </b-col>
+                  <b-col>
+                    <p class="mb-1">
+                      {{activite.desc}}
+                    </p>
+                    <b-list-group>
+                      <b-list-group-item class="bg-dark">
+                        Pour une journée intensive sur 10 :
+                        <b-badge variant="primary" pill>{{activite.IntensiteJour}}</b-badge>
+                      </b-list-group-item>
+                      <b-list-group-item class="bg-dark">
+                        Point Bien etre en jeu :
+                        <b-badge variant="primary" pill>{{activite.PointBienEtre}}</b-badge>
+                      </b-list-group-item>
+                    </b-list-group> 
+                  </b-col>
+                </b-row>
+              </b-container>
+            </b-list-group-item>
+          </b-list-group>
+        </b-col>
+      </b-row>
+    </b-container>
+  </div>
 </template>
 
 <script>
-import Activity from "../models/Activity";
+//import { db } from '../main.js';
+import data from "../JsonFile/Activity.json";
 
 export default {
-  name: "Country",
-  props: {
-    activity: Activity
+  name: "Activity",
+  data(){
+    return{
+      activities:data.activite,
+      newActivitie:""
+    }
   },
-  methods: {
-  },
-  computed: {
-    css_styles() {
-      return { color: this.activity.color }; //création dynamique de style css
+  methods:{
+    get_img_activite(activite){
+      return require(`../assets/Activite/${activite.image}`)
     }
   }
+  /*
+  firestore(){
+    return{
+      activities: db.collection("activities"),
+    }
+  }
+  */
 };
 </script>
 
@@ -49,18 +89,6 @@ a {
   justify-content: center;
 }
 
-.country {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 3em;
-  font-weight: bold;
-  text-align: center;
-  padding: 0.5em;
-}
-
-.world-cup,
-.flag {
-  width: 3rem;
-}
 
 h2 {
   font-size: 0.6em;
