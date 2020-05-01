@@ -5,6 +5,9 @@
         <router-link to="/master">My Daily Coach</router-link>
       </h1>
     </header>
+    <transition name="fade" mode="out-in">
+      <router-view class="view"></router-view>
+    </transition>
     <footer>
       <p class="title">Application bien-être</p>
     </footer>
