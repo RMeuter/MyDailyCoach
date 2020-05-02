@@ -15,8 +15,29 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
+import * as firebase from "firebase";
 export default {
-  name: "App"
+  name: "App",
+   methods: {
+    signOut() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          this.$router.replace({
+            name: "signin"
+          });
+        });
+    },
+    
+  },
+  computed: {
+    ...mapGetters({
+      user: "user"
+    })
+  }
 };
 </script>
 
