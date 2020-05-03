@@ -9,6 +9,7 @@
 
 <script>
 import * as firebase from "firebase";
+import { db } from "../main.js";
 
 export default {
   name: "Signin",
@@ -28,30 +29,35 @@ export default {
       firebase
       .auth()
       .signInWithPopup(provider)
-      .then( data =>{
+      .then( data => {
         if (data.additionalUserInfo.isNewUser){
           // savoir si nouveau visiteur : result.additionalUserInfo.isNewUser = false ou true
-          data.user.updateProfile({
+          data.user.updateProfile(
+            {
             displayName:
                 this.$options.filters.capitalize(this.user.firstname) +
                 " " +
                 this.$options.filters.capitalize(this.user.lastname),
+            }
+          ).then(
+            ()=>{
+              this.error ="";
+              this.success = `Account created for ${data.user.displayName}, now go to sign in page`;
+              console.log(this.success);
+
+          });
+          db.collection("UserExtraInfos").doc(data.user.uid).set({
             momentRecommandation: [20,30],
             pointBienEtre: 0,
             useParametre:{
+              "NePlusVoirExplication":false,
               "PointBienEtre":false,
               "NombreDePas":false,
               "PointCoeur":true,
               "freqCardiaque":true
             }
-          }).then(
-            ()=>{
-              console.log("j'ai update !");
-              this.error ="";
-              this.success = `Account created for ${data.user.displayName}, now go to sign in page`;
           });
         }
-
         this.$router.replace({ name: "stats" });
       }).catch(error =>{
         console.log(error);
