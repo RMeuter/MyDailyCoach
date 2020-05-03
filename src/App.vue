@@ -1,17 +1,16 @@
 <template>
   <div id="app">
     <header>
+      
+      <!-- ##################################### Mode connecter ######################################### !-->
       <template v-if="user.loggedIn">
        <b-container >
           <b-row align-h="center">
             <b-col lg="11">
              <b-navbar toggleable="lg" type="light" >
                 <b-navbar-brand ><H1>My Daily Coach</H1> </b-navbar-brand>
-
                 <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
                 <b-collapse id="nav-collapse" is-nav>
-                  <!-- Right aligned nav items -->
                   <b-navbar-nav class="ml-auto">   
                     <b-button v-b-toggle.collapse-1 variant="white">Paramètre</b-button>               
                     <b-button variant="danger" @click.prevent="signOut">Se déconnecter</b-button>
@@ -20,8 +19,45 @@
               </b-navbar>
             </b-col>
           </b-row>
+          <b-row>        
+            <b-collapse id="collapse-1" class="mt-2 col-12">
+              <b-card class="row text-center">
+                <b-col class="mb-4">
+                  <p class="card-text">Quel horraire de recommandation voulez vous ?</p>
+                  <b-button v-b-toggle.collapse-1-inner size="sm">Modifiez</b-button>
+                  <b-collapse id="collapse-1-inner" class="mt-2">
+                    <b-card>
+                      <div class="col-md-6">
+                        <div class="md-form md-outline input-with-post-icon timepicker" darktheme="true">
+                          <input type="text" id="dark-version-example" class="form-control" placeholder="Select time">
+                          <label for="dark-version-example">Dark version, 24 hours</label>
+                          <i class="fas fa-envelope  input-prefix"></i>
+                        </div>
+                      </div>
+                    </b-card>
+                  </b-collapse>
+                </b-col>
+                <b-col  class="mb-4">
+                  <p class="card-text">Quel capteur voulez vous ?</p>
+                  <b-button v-b-toggle.collapse-2-inner size="sm">Modifiez</b-button>
+                  <b-collapse id="collapse-2-inner" class="mt-2">
+                    <b-card>Hello!</b-card>
+                  </b-collapse>
+                </b-col>
+                <b-col  class="mb-4">
+                  <p class="card-text">Quel capteur voulez vous ?</p>
+                  <b-button v-b-toggle.collapse-3-inner size="sm">Modifiez</b-button>
+                  <b-collapse id="collapse-3-inner" class="mt-2">
+                    <b-card>Hello!</b-card>
+                  </b-collapse>
+                </b-col>
+              </b-card>
+            </b-collapse>
+          </b-row>
         </b-container >
       </template>
+
+      <!-- ##################################### Mode Non connecter ######################################### !-->
       <template v-else>
          <b-container >
           <b-row align-h="start">
@@ -35,47 +71,12 @@
       </template>
     </header>
 
-    <b-container>
-      <b-row>        
-        <b-collapse id="collapse-1" class="mt-2 col-12">
-          <b-card class="row text-center">
-            <b-col class="mb-4">
-              <p class="card-text">Quel horraire de recommandation voulez vous ?</p>
-              <b-button v-b-toggle.collapse-1-inner size="sm">Modifiez</b-button>
-              <b-collapse id="collapse-1-inner" class="mt-2">
-                <b-card>
-                  <div class="col-md-6">
-                    <div class="md-form md-outline input-with-post-icon timepicker" darktheme="true">
-                      <input type="text" id="dark-version-example" class="form-control" placeholder="Select time">
-                      <label for="dark-version-example">Dark version, 24 hours</label>
-                      <i class="fas fa-envelope  input-prefix"></i>
-                    </div>
-                  </div>
-                </b-card>
-              </b-collapse>
-            </b-col>
-            <b-col  class="mb-4">
-              <p class="card-text">Quel capteur voulez vous ?</p>
-              <b-button v-b-toggle.collapse-2-inner size="sm">Modifiez</b-button>
-              <b-collapse id="collapse-2-inner" class="mt-2">
-                <b-card>Hello!</b-card>
-              </b-collapse>
-            </b-col>
-            <b-col  class="mb-4">
-              <p class="card-text">Quel capteur voulez vous ?</p>
-              <b-button v-b-toggle.collapse-3-inner size="sm">Modifiez</b-button>
-              <b-collapse id="collapse-3-inner" class="mt-2">
-                <b-card>Hello!</b-card>
-              </b-collapse>
-            </b-col>
-          </b-card>
-        </b-collapse>
-      </b-row>
-    </b-container>
-
+    <!-- ############################## Transition #################################  !-->
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
+    
+    <!-- ############################## Footer #################################  !-->
     <footer>
       <p class="title">Application bien-être</p>
     </footer>
@@ -84,10 +85,10 @@
 
 <script>
 import { mapGetters } from "vuex";
-
 import * as firebase from "firebase";
+
 export default {
-  name: "App",
+   name: "App",
    methods: {
     signOut() {
       firebase
