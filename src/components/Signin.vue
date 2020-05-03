@@ -32,13 +32,9 @@ export default {
         if (data.additionalUserInfo.isNewUser){
           // savoir si nouveau visiteur : result.additionalUserInfo.isNewUser = false ou true
           data.user.updateProfile({
-            displayName:
-                this.$options.filters.capitalize(this.user.firstname) +
-                " " +
-                this.$options.filters.capitalize(this.user.lastname),
+            photoURL: "hey.jpg", // some photo url
             momentRecommandation: [20,30],
-            pointBienEtre: 0,
-            useParametre:{
+            useParam:{
               "PointBienEtre":false,
               "NombreDePas":false,
               "PointCoeur":true,
