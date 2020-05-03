@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-container >      
+    <b-container > 
+      <!-- Presentation de l'application en trois points !-->     
       <b-row v-if="firstTime"> 
         <b-alert show variant="light" dismissible>
           <p>Voici comment fonctionne l'application :</p>
@@ -24,7 +25,7 @@
         </b-col>
       </b-row>          
     </b-container>
-    <div ><!-- v-if="outHourButtonShow">!-->
+    <div ><!-- v-if="montreBoutonRecommandation">!-->
       <b-link href="/signin">Accès à la recommandation de la journée</b-link>
     </div>
   </div>
@@ -33,8 +34,7 @@
 <script>
 import Chart from "./Charts/Chart";
 import Mixed from "./Charts/Mixed";
-import { mapGetters } from "vuex";
-import * as firebase from "firebase";
+
 
 export default {
   name: "StatsUser",
@@ -43,27 +43,16 @@ export default {
     Mixed
   },
   methods:{
-    signOut() {
-       firebase
-       .auth()
-       .signOut()
-       .then(() =>
-        this.$router.replace({name : "signin"})
-       )
-    },
     firstTime(){ // ça doit passer en props !
       return true
     }
   },
   computed: {
-      outHourButtonShow(){
-        let date = new Date();
-        return date.getHours()>=0 && date.getHours()<=2;
+      montreBoutonRecommandation(){
+        return this.$store.getters.dateRecommandation;
     }
   },
-  ...mapGetters({
-      user:"user",
-  })
+
   
 };
 
