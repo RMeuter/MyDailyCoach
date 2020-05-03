@@ -4,7 +4,8 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 // Vidéo tuto pour comprendre le fonctionnement :
 // https://www.youtube.com/watch?v=OjM7hzcdBrs
-export default new Vuex.Store({
+export default new Vuex.Store(
+    {
     state: {
         user: {
             loggedIn: false,
@@ -15,7 +16,7 @@ export default new Vuex.Store({
         user(state) {
             return state.user
         },
-        dataRecommandation(state){
+        dateRecommandation(state){
             let date = new Date();
             let dateRecommand = new Date();
             dateRecommand.setHours(state.user.data.momentRecommandation[0]);

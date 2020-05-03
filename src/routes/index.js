@@ -2,8 +2,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import * as firebase from "firebase";
-// ############# Components #############
-import Master from "../components/Master";
+// ############# Components ############
 import Signin from "../components/Signin";
 import Stats from '../components/StatsUser.vue';
 import Recom from "../components/RecommandationUser.vue";
@@ -22,14 +21,6 @@ const router = new Router({
             path: '/signin',
             name: 'signin',
             component: Signin,
-        },
-        {
-            path: '/home',
-            name: 'master',
-            component: Master,
-            meta: {
-                requiresAuth: true
-            }
         },
         {
             path: '/stats',
