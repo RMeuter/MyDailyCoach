@@ -14,9 +14,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css"
 
 import "@/helpers/filters";
 
-
 Vue.config.productionTip = false
-
 
 // ############## firebase ##############
 const config = {
@@ -34,7 +32,13 @@ firebase.initializeApp(config);
 export const db = firebase.firestore();
 
 firebase.auth().onAuthStateChanged(user => {
-  store.dispatch("fetchUser", user);
+  // https://firebase.google.com/docs/database/web/read-and-write
+    console.log(user.uid);
+    console.log("user");
+    console.log(user);
+    console.log("user collection");
+    console.log(db.collection("UserExtraInfos").doc(user.uid));
+    store.dispatch("fetchUser", user);
 });
 
 // ############## Pluggin ##############
