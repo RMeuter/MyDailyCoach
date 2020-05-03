@@ -43,9 +43,15 @@ export default new Vuex.Store(
                 commit("SET_USER", {
                     displayName: user.displayName,
                     email: user.email,
-                    momentRecommandation:[23, 30],// user.momentRecommandation,
-                    useParametre: user.useParametre,
-                    pointBienEtre: user.pointBienEtre
+                    newUser: user.isNewUser,
+                    momentRecommandation: [23, 30],// user.momentRecommandation,
+                    useParametre: {
+                        "PointBienEtre":false,
+                        "NombreDePas":false,
+                        "PointCoeur":true,
+                        "freqCardiaque":true
+                      },//user.providerData.useParametre,
+                    pointBienEtre: 0//user.providerData.pointBienEtre
                 });
             } else {
                 commit("SET_USER", null);
