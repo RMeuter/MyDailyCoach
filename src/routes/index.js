@@ -36,7 +36,7 @@ const router = new Router({
             name: 'stats',
             component: Stats,
             meta: {
-                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
+                requiresAuth: true // ############### Attention pour un accès plus rapide en mode test mis en place du false
             }
         },
         {
