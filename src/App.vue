@@ -131,7 +131,7 @@ header {
   font-size: 2em;
   color: #41b883;
   width: 100%;
-  text-align: right;
+  text-align: center;
   padding-top: 1em;
   padding-bottom: 1em;
 }
