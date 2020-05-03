@@ -6,7 +6,6 @@ import data from "../../JsonFile/Step.json"
 
 let i = doHeartPoint(data.heart_point, 1);
 let j = doHeartPoint(data.heart_point, 2);
-console.log(data.heart_point[12]);
 function doHeartPoint(data, i) {
       let ptLi = []
       let timeLi = []

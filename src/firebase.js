@@ -3,11 +3,11 @@
 //Renommer ce fichier en firebase.js
 
 
-import { firebase } from "@firebase/app";
-import "@firebase/firestore";
+//import { firebase } from "@firebase/app";
+//import "@firebase/firestore";
 
 
-const config = {
+/*const config = {
   apiKey: "AIzaSyD6czB7vsdnpAFW_NOS6tGyNGkzawNGGZI",
   authDomain: "happyevening.firebaseapp.com",
   databaseURL: "https://happyevening.firebaseio.com",
@@ -21,3 +21,4 @@ const config = {
 firebase.initializeApp(config);
 
 export const db = firebase.firestore();
+*/

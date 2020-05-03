@@ -18,7 +18,13 @@
                 <b-button v-b-toggle.collapse-1-inner size="sm">Modifiez</b-button>
                 <b-collapse id="collapse-1-inner" class="mt-2">
                   <b-card>
-                    https://mdbootstrap.com/docs/jquery/forms/time-picker/
+                      <div class="col-md-6">
+                        <div class="md-form md-outline input-with-post-icon timepicker" darktheme="true">
+                          <input type="text" id="dark-version-example" class="form-control" placeholder="Select time">
+                          <label for="dark-version-example">Dark version, 24 hours</label>
+                          <i class="fas fa-envelope  input-prefix"></i>
+                        </div>
+                      </div>
                   </b-card>
                 </b-collapse>
               </b-col>

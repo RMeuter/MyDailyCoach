@@ -28,8 +28,26 @@ export default {
       firebase
       .auth()
       .signInWithPopup(provider)
-      .then(result => {
-        console.log(result.user);
+      .then( data =>{
+        if (data.additionalUserInfo.isNewUser){
+          // savoir si nouveau visiteur : result.additionalUserInfo.isNewUser = false ou true
+          data.user.updateProfile({
+            photoURL: "hey.jpg", // some photo url
+            momentRecommandation: [20,30],
+            useParam:{
+              "PointBienEtre":false,
+              "NombreDePas":false,
+              "PointCoeur":true,
+              "freqCardiaque":true
+            }
+          }).then(
+            ()=>{
+              console.log("j'ai update !");
+              this.error ="";
+              this.success = `Account created for ${data.user.displayName}, now go to sign in page`;
+          });
+        }
+
         this.$router.replace({ name: "stats" });
       }).catch(error =>{
         console.log(error);
