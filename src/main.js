@@ -33,12 +33,25 @@ export const db = firebase.firestore();
 
 firebase.auth().onAuthStateChanged(user => {
   // https://firebase.google.com/docs/database/web/read-and-write
-    console.log(user.uid);
-    console.log("user");
-    console.log(user);
-    console.log("user collection");
-    console.log(db.collection("UserExtraInfos").doc(user.uid));
-    store.dispatch("fetchUser", user);
+    if (user.uid){
+      db
+      .collection("UserExtraInfos")
+      .doc(user.uid)
+      .get()
+      .then(doc => {
+        if (!doc.exists) {
+          console.log('No such document!');
+        } else {
+          var use = doc.data();
+          store.dispatch("fetchUser", {user:user, extra:use});
+        }
+      })
+      .catch(err => {
+        console.log('Error getting document', err);
+      });
+    } else {
+      store.dispatch("fetchUser", user);
+    }
 });
 
 // ############## Pluggin ##############

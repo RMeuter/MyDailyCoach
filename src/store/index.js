@@ -33,26 +33,21 @@ export default new Vuex.Store(
         }
     },
     actions: {
-        fetchUser({ commit }, user) { 
+        fetchUser({ commit }, data) { 
             /**
              * Lui au lieu de faire store.commit (), il choppe directement commit
              * Et donc il commit directement apres
              * */ 
-            commit("SET_LOGGED_IN", user !== null);
-            if (user) {
-                commit("SET_USER", {
-                    displayName: user.displayName,
-                    email: user.email,
-                    newUser: user.isNewUser,
-                    momentRecommandation: [23, 30],// user.momentRecommandation,
-                    useParametre: {
-                        "PointBienEtre":false,
-                        "NombreDePas":false,
-                        "PointCoeur":true,
-                        "freqCardiaque":true
-                      },//user.providerData.useParametre,
-                    pointBienEtre: 0//user.providerData.pointBienEtre
-                });
+            commit("SET_LOGGED_IN", data !== null);
+            if (data.extra) {
+                let obj = {
+                    uid : data.user.uid,
+                    displayName: data.user.displayName,
+                    momentRecommandation : data.extra.momentRecommandation,
+                    pointBienEtre : data.extra.pointBienEtre,
+                    parametre : data.extra.useParametre
+                };
+                commit("SET_USER", obj );
             } else {
                 commit("SET_USER", null);
             }
