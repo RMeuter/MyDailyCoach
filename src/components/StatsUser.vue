@@ -1,7 +1,12 @@
 <template>
   <div>
     <b-container > 
-      <!-- Presentation de l'application en trois points !-->     
+      <!-- ############################# Presentation de l'application en trois points ############################# !-->     
+      <b-row>
+        <b-col>
+          <h4> Salut {{user.data.displayName}} </h4>
+        </b-col>
+      </b-row>
       <b-row v-if="firstTime"> 
         <b-alert show variant="light" dismissible>
           <p>Voici comment fonctionne l'application :</p>
@@ -17,6 +22,7 @@
         </b-alert>
       </b-row>
       <b-row>
+        <!-- ############################# Graphique de l'utilisateur ############################# !-->     
         <b-col>
           <Chart />
         </b-col>
@@ -25,8 +31,8 @@
         </b-col>
       </b-row>          
     </b-container>
-    <div ><!-- v-if="montreBoutonRecommandation">!-->
-      <b-link href="/signin">Accès à la recommandation de la journée</b-link>
+    <div v-if="montreBoutonRecommandation">
+        <b-link href="/signin">Accès à la recommandation de la journée</b-link>
     </div>
   </div>
 </template>
@@ -34,6 +40,7 @@
 <script>
 import Chart from "./Charts/Chart";
 import Mixed from "./Charts/Mixed";
+import { mapGetters } from 'vuex';
 
 
 export default {
@@ -50,9 +57,12 @@ export default {
   computed: {
       montreBoutonRecommandation(){
         return this.$store.getters.dateRecommandation;
-    }
-  },
+    },
+    ...mapGetters({
+      user: "user"
+    })
 
+  },
   
 };
 
