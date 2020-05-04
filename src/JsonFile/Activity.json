@@ -1,20 +1,20 @@
 {
     "activite" :[
         {
-            "name":"Meditation",
-            "CATEGORIE":"Relaxation",
+            "nom":"Meditation",
+            "cat":"Relaxation",
             "image":"meditation.jpg",
             "desc":"La méditation est une activité procurant une force de réconfort et fournit à la suite de celui-ci un bien être",
-            "url":"https://www.youtube.com/watch?v=QjoZfET5kJ8",
+            "url":"https://www.youtube.com/embed/QjoZfET5kJ8",
             "IntensiteJour" : 5,
             "PointBienEtre": 10
         },
         {
-            "name":"Maintenir son souffle",
-            "CATEGORIE":"Relaxation",
+            "nom":"Maintenir son souffle",
+            "cat":"Relaxation",
             "image":"souffle.jpg",
             "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
-            "url":"https://www.youtube.com/watch?v=I2C7nvK7GMY",
+            "url":"https://www.youtube.com/embed/QjoZfET5kJ8",
             "IntensiteJour" : 1,
             "PointBienEtre": 2
         }
