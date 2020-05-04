@@ -1,6 +1,6 @@
 export default class Activite {
 
-    static CATEGORIE = ['Activité sportive relaxante', 'Actitivé sportive intense', 'Relaxation'];
+    static CATEGORIE = ['Activité sportive relaxante', 'Activité sportive intense', 'Relaxation'];
     // Choix des couleurs :https://htmlcolorcodes.com/fr/
     static COULEUR = ["#F7FF20","#FB2A10","#9AFF7C"]
     constructor(a_nom, a_pic, a_desc, a_cat, a_url, a_intenDay, a_ptBienEtre) {
@@ -43,6 +43,9 @@ export default class Activite {
 
     get_image() {
         return this.pic;
+    }
+    get_color(){
+        return this.color;
     }
 
 }

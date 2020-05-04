@@ -21,6 +21,9 @@
                   <b-col>
                     <p class="mb-1">
                       {{activite.desc}}
+                      <router-link
+                      :to="{name:'detail', params:{activite:activite, nomActivite:activite.nom}}"
+                      >Lien vers l'activité !</router-link> 
                     </p>
                     <b-list-group>
                       <b-list-group-item class="bg-dark">
@@ -49,7 +52,7 @@ import data from "../JsonFile/Activity.json";
 import Activite from "../models/Activite"
 
 export default {
-  name: "Activity",
+  name: "Activites",
   data(){
     return{
       activities:data.activite,

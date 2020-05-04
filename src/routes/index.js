@@ -6,7 +6,8 @@ import * as firebase from "firebase";
 import Signin from "../components/Signin";
 import Stats from '../components/StatsUser.vue';
 import Recom from "../components/RecommandationUser.vue";
-import Activities from "../components/Activities.vue";
+import Activites from "../components/Activities.vue";
+import Activite from "../components/Activite.vue";
 
 Vue.use(Router);
 
@@ -27,13 +28,22 @@ const router = new Router({
             name: 'stats',
             component: Stats,
             meta: {
-                requiresAuth: true // ############### Attention pour un accès plus rapide en mode test mis en place du false
+                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
             }
         },
         {
-            path: '/',//activities',
-            name: 'activities',
-            component: Activities,
+            path: '/activites',//activities',
+            name: 'activites',
+            component: Activites,
+            meta: {
+                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
+            }
+        },
+        {
+            path: '/activites/:nomActivite',//activities',
+            name: 'detail',
+            component: Activite,
+            props:true,
             meta: {
                 requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
             }
@@ -55,12 +65,12 @@ router.beforeEach((to, from, next) => {
     const currentUser = firebase.auth().currentUser
     if (requiresAuth && !currentUser) {
         next('/signin')
-    } else if (requiresAuth && currentUser) {
-        next()
     }else if (!to.matched.length && (requiresAuth && currentUser)){ // Pour les erreur 404 si connecter 
-        next("/home")
+        next("/stats")
     }else if (!to.matched.length && (requiresAuth && !currentUser)){ // Pour les erreur 404 si non connecter
         next("/signin")
+    } else if (requiresAuth && currentUser) {
+        next()
     } else {
         next()
     }

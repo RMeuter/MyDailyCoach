@@ -1,16 +1,17 @@
 <template>
-  <div class="country container" :style="css_styles">
-    <b-col>  
-        <b-img thumbnail fluid :src="get_img_activite()" :alt="activite.name">yep</b-img>
-    </b-col>
-    <h2>{{activite.nom}}</h2>
-    <h3>{{activite.cat}}</h3>
+  <div class="p-2">
     <b-container>
+      <b-row>
+        <h2 class="col-12 text-center m-3">{{activite.nom}}</h2>
+        <h5 class="col-12 text-left mb-5">Catégorie : {{activite.cat}}</h5>
+      </b-row>
         <b-row>
-            <b-col>
+            <b-card :style="css_styles" :img-src="get_img_activite()" img-alt="Card image" img-left class="mb-3 col-12 border-dark">
+              <b-card-text>
                 {{activite.desc}}
-            </b-col>
-            <b-col>
+              </b-card-text>
+            </b-card>
+            <b-col cols="12" class=" border-dark rounded" :style="css_styles">
                 <b-embed
                     type="iframe"
                     aspect="16by9"
@@ -39,18 +40,18 @@ export default {
     this.ptBienEtre = a_ptBienEtre;
  * 
  */
-  name: "Details",
+  name: "Detail",
   props: {
     activite: Activite
-  },
-  data() {
-    return {
-      
-    };
   },
   methods: {
     get_img_activite(){
       return require(`../assets/Activite/${this.activite.pic}`)
+    }
+  },
+  computed:{
+    css_styles() {
+      return { "background-color": this.activite.color }; //création dynamique de style css
     }
   },
   beforeRouteEnter(to, from, next) {
