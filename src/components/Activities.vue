@@ -22,7 +22,7 @@
                     <p class="mb-1">
                       {{activite.desc}}
                       <router-link
-                      :to="{name:'detail', params:{activite:activite, nomActivite:activite.nom}}"
+                      :to="{name:'detail', params:{activite:activite, estRecommande:false, nomActivite:activite.nom}}"
                       >Lien vers l'activité !</router-link> 
                     </p>
                     <b-list-group>

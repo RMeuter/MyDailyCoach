@@ -2,7 +2,10 @@
   <div class="p-2">
     <b-container>
       <b-row>
-        <h2 class="col-12 text-center m-3">{{activite.nom}}</h2>
+        <h2 class="col-12 text-center m-3">
+          <span v-if="estRecommande"> Ma Daily activité :</span>
+          {{activite.nom}}
+        </h2>
         <h5 class="col-12 text-left mb-5">Catégorie : {{activite.cat}}</h5>
       </b-row>
         <b-row>
@@ -29,20 +32,10 @@
 import Activite from "../models/Activite"
 
 export default {
-    /**
- *  this.nom = a_nom;
-    this.cat = a_cat;
-    this.pic = a_pic;
-    this.color = a_color; ######
-    this.desc = a_desc;
-    this.url = a_url;
-    this.intenDay = a_intenDay;
-    this.ptBienEtre = a_ptBienEtre;
- * 
- */
   name: "Detail",
   props: {
-    activite: Activite
+    activite: Activite,
+    estRecommande: Boolean
   },
   methods: {
     get_img_activite(){

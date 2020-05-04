@@ -5,7 +5,6 @@ import * as firebase from "firebase";
 // ############# Components ############
 import Signin from "../components/Signin";
 import Stats from '../components/StatsUser.vue';
-import Recom from "../components/RecommandationUser.vue";
 import Activites from "../components/Activities.vue";
 import Activite from "../components/Activite.vue";
 
@@ -48,15 +47,6 @@ const router = new Router({
                 requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
             }
         },
-        {
-            path: '/myDailyActivity',
-            name: 'myDailyActivity',
-            component: Recom,
-            meta: {
-                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
-            }
-        }, 
-
     ]
 });
 
