@@ -22,6 +22,10 @@ export default new Vuex.Store(
             dateRecommand.setHours(state.user.data.momentRecommandation[0]);
             dateRecommand.setMilliseconds(state.user.data.momentRecommandation[1]);
             return date >= dateRecommand && date <= dateRecommand.setHours(dateRecommand.getHours + 2);
+        },
+        dejaRecuPointRecommandation(state){
+            var date = new Date();
+            return state.dernierRecommandationVu == date.toLocaleDateString();
         }
     },
     mutations: {
@@ -30,6 +34,9 @@ export default new Vuex.Store(
         },
         SET_USER(state, data) {
             state.user.data = data;
+        },
+        SET_POINT_BIEN_ETRE(state, nombreAAjouter){
+            state.user.data.pointBienEtre += nombreAAjouter
         }
     },
     actions: {
@@ -44,8 +51,9 @@ export default new Vuex.Store(
                     uid : data.user.uid,
                     displayName: data.user.displayName,
                     momentRecommandation : data.extra.momentRecommandation,
+                    dernierRecommandationVu : data.extra.dernierRecommandationVu,
                     pointBienEtre : data.extra.pointBienEtre,
-                    parametre : data.extra.useParametre
+                    parametre : data.extra.useParametre,
                 };
                 commit("SET_USER", obj );
             } else {
