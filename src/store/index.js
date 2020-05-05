@@ -18,12 +18,12 @@ export default new Vuex.Store(
         user(state) {
             return state.user
         },
-        dateRecommandation(state){
-            let date = new Date();
+        estMomentRecommandation(state){
+            let date = new Date(state.user.data.dernierRecommandationVu);
             let dateRecommand = new Date();
             dateRecommand.setHours(state.user.data.momentRecommandation[0]);
-            dateRecommand.setMilliseconds(state.user.data.momentRecommandation[1]);
-            return date >= dateRecommand && date <= dateRecommand.setHours(dateRecommand.getHours + 2);
+            dateRecommand.setMinutes(state.user.data.momentRecommandation[1]);
+            return date >= dateRecommand && date <= dateRecommand.setHours(dateRecommand.getHours + 4);
         },
         niveauObtenu(state){
             for (var i = 0; i < dictLevel.niveau.length; i++){
@@ -41,25 +41,20 @@ export default new Vuex.Store(
             state.user.data = data;
         },
         SET_POINT_BIEN_ETRE(state, nombreAAjouter){
-            /**
-             * Ici on compare seulement avec la dernière fois que l'utilisateur a vu la recommandation
-             * mais le problème est que il peut etre voir la recommandation jusque 2 heure du mat et donc comptez pour le jour
-             * d'après 
-             * 
-             */
             let date = new Date();
-            if (state.user.data.dernierRecommandationVu != date.toLocaleDateString())
+            if (state.user.data.dernierRecommandationVu != date.toLocaleDateString()){
                 state.user.data.pointBienEtre += nombreAAjouter;
+                console.log(state.user.data.pointBienEtre);
+            }
         },
         SET_DERNIERE_RECOMMANDATION_VU(state){
-            /**
-             * Ici on compare seulement avec la dernière fois que l'utilisateur a vu la recommandation
-             * mais le problème est que il peut etre voir la recommandation jusque 2 heure du mat et donc comptez pour le jour
-             * d'après 
-             * 
-             */
             let date = new Date();
-            state.user.data.dernierRecommandationVu += date.toLocaleDateString();
+            state.user.data.dernierRecommandationVu = date.getTime();
+        }, 
+        SET_PARAMETRE(state, params){
+            // Changer les parametres et transformer
+            console.log(state)
+            console.log(params)
         }
     },
     actions: {
@@ -83,17 +78,9 @@ export default new Vuex.Store(
                 commit("SET_USER", null);
             }
         },
-        Add_PointBienEtre({ commit }, ajoutPoint) { 
-            /**
-             * Lui au lieu de faire store.commit (), il choppe directement commit
-             * Et donc il commit directement apres
-             * */ 
+        Add_PointBienEtre({ commit }, ajoutPoint) {
             commit("SET_DERNIERE_RECOMMANDATION_VU");
-            if (ajoutPoint) {
-                commit("SET_POINT_BIEN_ETRE", ajoutPoint );
-            } else {
-                commit("SET_POINT_BIEN_ETRE", 0);
-            }
+            commit("SET_POINT_BIEN_ETRE", ajoutPoint );
         },
     },
     strict: true,

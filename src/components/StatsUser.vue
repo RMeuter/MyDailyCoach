@@ -11,7 +11,7 @@
       <!-- ############################# Presentation de l'application en trois points ############################# !-->     
       <b-row v-if="!user.data.parametre.NePlusVoirExplication">
         <b-col cols="12">
-          <b-alert show variant="light" dismissible>
+          <b-alert show variant="light" class="border-light" dismissible>
             <p>Voici comment fonctionne l'application :</p>
             <b-alert show variant="primary">
               Vous devez installer Google Fit pour nous permettre de recupérer votre activité !
@@ -26,6 +26,14 @@
         </b-col> 
       </b-row>
       <b-row>
+        <!-- ############################# Recommandation ############################# !-->     
+        <div v-if="!estMoment">
+          <b-button @click="Add_PointBienEtre(getRecommandActivite().ptBienEtre)"
+          :to="{name:'detail', params:{activite:getRecommandActivite(), estRecommande:true, nomActivite:getRecommandActivite().nom}}"
+          >
+          La Daily Activity est là !!
+          </b-button>
+        </div>  
         <!-- ############################# Graphique de l'utilisateur ############################# !-->     
         <b-col>
           <Chart />
@@ -34,11 +42,6 @@
           <Mixed />
         </b-col>
       </b-row>          
-    <div v-if="this.$store.getters.dateRecommandation">
-        <router-link
-          :to="{name:'detail', params:{activite:activite, estRecommande:true, nomActivite:activite.nom}}"
-        >Lien vers l'activité !</router-link>
-    </div>
     </b-container>
     <b-container v-else>
       <div style="width:100%;height:0;padding-bottom:57%;position:relative;">
@@ -57,9 +60,11 @@
 import Chart from "./Charts/Chart";
 import Mixed from "./Charts/Mixed";
 import Profil from "./Profil";
-import { mapGetters } from 'vuex';
 
+import Acti from "../JsonFile/Activity.json";
 
+import { mapGetters, mapActions } from 'vuex';
+import Activite from "../models/Activite"
 
 export default {
   name: "StatsUser",
@@ -74,12 +79,31 @@ export default {
     },
     progress(){
       return {width :Math.round(100*((this.user.data.pointBienEtre-this.niveau.nombreDePoint)/this.niveau.niveauSup))}
+    },
+    ...mapActions([
+      "Add_PointBienEtre"
+    ]),
+    getRecommandActivite(){
+      // Suite de fonction
+      let a_activite = Acti.activite[0];
+      const a_new_activite = new Activite(
+        a_activite.nom,
+            a_activite.image,
+            a_activite.desc,
+            a_activite.cat,
+            a_activite.url,
+            a_activite.IntensiteJour,
+            a_activite.PointBienEtre,
+          );
+      //this.$store.dispatch("Add_PointBienEtre", a_new_activite.ptBienEtre)
+      return a_new_activite
     }
   },
   computed: {
     ...mapGetters({
       user: "user",
-      niveau : "niveauObtenu"
+      niveau : "niveauObtenu",
+      estMoment : "estMomentRecommandation"
     }),
    
   },
