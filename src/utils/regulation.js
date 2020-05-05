@@ -26,10 +26,11 @@ var regulation = {
         // Attention : Toujours par trois nombre, il peut y avoir plusieur activité en une array
         Calcul(donneeSommeil){
             let tempsSommeil = 0;
+            let arraySommeil = [72, 109, 110, 111, 112];
             for (let arrayActivite in donneeSommeil){
                 let i = 0;
                 while(i < arrayActivite.length){
-                    if(donneeSommeil[i] in [72, 109, 110, 111, 112]){
+                    if(arraySommeil.includes(donneeSommeil[i])){
                         tempsSommeil += donneeSommeil[i+1];
                     }
                     i+=3
