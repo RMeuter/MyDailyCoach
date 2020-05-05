@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import dictLevel from "../store/levelUser"
+import dictLevel from "../JsonFile/levelUser.json"
 
 Vue.use(Vuex);
 // Vidéo tuto pour comprendre le fonctionnement :

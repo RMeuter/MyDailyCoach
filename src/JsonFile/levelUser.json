@@ -1,0 +1,19 @@
+{
+    "niveau" : [
+    {
+        "nombreDePoint":0,
+        "niveauSup":20,
+        "nomNiveau":"OOOh ! Pete un coup, ça ira mieux !",
+        "commentaire": "Une pomme, ça donne des vitamines. Les vitamines, ça donne la pêche. La pêche, ça donne le travail. Le travail, ça donne l'argent. L'argent, ça donne les femmes. Les femmes, ça donne le stress. Le stress, ça pousse à fumer. Fumer, ça tue. Tu veux une pomme",
+        "photoLevel": "Niveau1.gif"
+        
+    },
+    {
+        "nombreDePoint":20,
+        "niveauSup":100,
+        "nomNiveau":"Le novice de la destresse",
+        "commentaire": "Une pomme, ça donne des vitamines. Les vitamines, ça donne la pêche. La pêche, ça donne le travail. Le travail, ça donne l'argent. L'argent, ça donne les femmes. Les femmes, ça donne le stress. Le stress, ça pousse à fumer. Fumer, ça tue. Tu veux une pomme",
+        "photoLevel": "https://giphy.com/gifs/dog-lucky-GXmXd0d9W5IMo"
+        
+    }
+]}
