@@ -7,6 +7,7 @@
           {{activite.nom}}
         </h2>
         <h5 class="col-12 text-left mb-5">Catégorie : {{activite.cat}}</h5>
+        <h5 v-if="estRecommande" class="col-12 mb-5">Vous obtenez {{activite.ptBienEtre}} </h5>
       </b-row>
         <b-row>
             <b-card :style="css_styles" :img-src="get_img_activite()" img-alt="Card image" img-left class="mb-3 col-12 border-dark">
@@ -30,6 +31,11 @@
 
 <script>
 import Activite from "../models/Activite"
+import {mapActions} from "vuex"
+
+if(this.estRecommande){
+  this.Add_PointBienEtre(this.activite.ptBienEtre);
+}
 
 export default {
   name: "Detail",
@@ -40,12 +46,16 @@ export default {
   methods: {
     get_img_activite(){
       return require(`../assets/Activite/${this.activite.pic}`)
-    }
+    },
+    ...mapActions([
+      "Add_PointBienEtre"
+    ]),
   },
   computed:{
     css_styles() {
       return { "background-color": this.activite.color }; //création dynamique de style css
-    }
+    },
+    
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
