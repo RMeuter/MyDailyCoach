@@ -1,4 +1,5 @@
-var regulation = {
+export default {
+    // ######### Entre Regulation (afin déviter le code spagetti et faire une code flexible sur les données):
     CapteurPas:{
         // Les pas sont issues de com.google.step_count.delta
         // La forme des données des pas nbPasEnUneHeure = [12, 23, ...] 

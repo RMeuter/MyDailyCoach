@@ -34,7 +34,7 @@
  * l'ajout de point selon les capteurs.
  */
 
- function calculPointIntensiteJournaliere(data, regulation){
+export default function calculPointIntensiteJournaliere(data, regulation){
     let pointIntensiteDay = 0;
     for (let liaison in data.ArrayLiaison){
         try {
@@ -56,9 +56,6 @@
  }
 
 
- // ######### Entre Regulation (afin déviter le code spagetti et faire une code flexible sur les données):
+ 
 
-import data from "../JsonFile/Step.json"
-import {regulation} from "./regulation"
 
-console.log(calculPointIntensiteJournaliere(data, regulation));
