@@ -33,7 +33,8 @@ export const db = firebase.firestore();
 
 firebase.auth().onAuthStateChanged(user => {
   // https://firebase.google.com/docs/database/web/read-and-write
-    if (user.uid){
+  if(user){
+    if ("uid" in user){
       db
       .collection("UserExtraInfos")
       .doc(user.uid)
@@ -52,6 +53,7 @@ firebase.auth().onAuthStateChanged(user => {
     } else {
       store.dispatch("fetchUser", user);
     }
+  }
 });
 
 // ############## Pluggin ##############
