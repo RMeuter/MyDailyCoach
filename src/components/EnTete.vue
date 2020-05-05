@@ -79,11 +79,11 @@ import { mapGetters } from "vuex";
 import * as firebase from "firebase";
 
 export default {
-  data() {
-      return {
-        NePlusVoirExplication: false//user.data.parametre.NePlusVoirExplication
-      }
-    },
+  data(){
+    return{
+      NePlusVoirExplication:false
+    }
+  },
    methods: {
     signOut() {
       firebase
@@ -95,7 +95,6 @@ export default {
           });
         });
     },
-    
   },
   computed: {
     ...mapGetters({
