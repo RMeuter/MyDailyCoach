@@ -46,14 +46,12 @@ export default {
               console.log(this.success);
 
           });
-          let derDateRecommantion = new Date();
-          derDateRecommantion.setDate(derDateRecommantion.getDate()-1);
-
+          
           db.collection("UserExtraInfos").doc(data.user.uid).set({
             // implementation des réglages de base
             momentRecommandation: [20,30],
             pointBienEtre: 0,
-            dernierRecommandationVu: derDateRecommantion.toLocaleDateString(),
+            dernierRecommandationVu: (new Date()).getTime(),
             useParametre:{
               "NePlusVoirExplication":false,
               "PointBienEtre":false,
