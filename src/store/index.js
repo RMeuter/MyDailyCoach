@@ -3,6 +3,9 @@ import Vuex from "vuex";
 
 import dictLevel from "../JsonFile/levelUser.json"
 
+import { db } from "../main.js";
+import fonctionChangementParametre from "./construitJSONParametre"
+
 Vue.use(Vuex);
 // Vidéo tuto pour comprendre le fonctionnement :
 // https://www.youtube.com/watch?v=OjM7hzcdBrs
@@ -44,17 +47,30 @@ export default new Vuex.Store(
             let date = new Date();
             if (state.user.data.dernierRecommandationVu != date.toLocaleDateString()){
                 state.user.data.pointBienEtre += nombreAAjouter;
-                console.log(state.user.data.pointBienEtre);
+                db.collection("UserExtraInfos").doc(state.user.data.uid).update(
+                    {pointBienEtre: state.user.data.pointBienEtre}
+                );
             }
         },
         SET_DERNIERE_RECOMMANDATION_VU(state){
             let date = new Date();
             state.user.data.dernierRecommandationVu = date.getTime();
+            db.collection("UserExtraInfos").doc(state.user.data.uid).update(
+                {dernierRecommandationVu: state.user.data.dernierRecommandationVu}
+            );
         }, 
-        SET_PARAMETRE(state, params){
-            // Changer les parametres et transformer
-            console.log(state)
-            console.log(params)
+        SET_MOMENT_RECOMMANDATION(state, nouvelleHeure){
+            db.collection("UserExtraInfos").doc(state.user.data.uid).update(
+                {momentRecommandation: nouvelleHeure}
+            );
+            state.user.data.momentRecommandation = nouvelleHeure;
+        }, 
+        SET_PARAMETRE(state, idParams, parametre){
+            let arrayParams = fonctionChangementParametre(idParams, parametre); 
+            db.collection("UserExtraInfos").doc(state.user.data.uid).update(
+                arrayParams[0]
+            );
+            state.user.data.parametre[arrayParams[1]] = parametre; 
         }
     },
     actions: {
@@ -81,6 +97,12 @@ export default new Vuex.Store(
         Add_PointBienEtre({ commit }, ajoutPoint) {
             commit("SET_DERNIERE_RECOMMANDATION_VU");
             commit("SET_POINT_BIEN_ETRE", ajoutPoint );
+        },
+        Modify_Params({ commit }, idParams, parametre) {
+            commit("SET_PARAMETRE", idParams, parametre);
+        },
+        Modify_MomentRecommandation({ commit }, nouvelleHeure) {
+            commit("SET_MOMENT_RECOMMANDATION", nouvelleHeure );
         },
     },
     strict: true,

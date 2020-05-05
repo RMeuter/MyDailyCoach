@@ -19,40 +19,28 @@
         </b-row>
         <b-row>        
           <b-collapse id="collapse-1" class="mt-2 col-12">
-            <b-card class="row text-center">
-              <b-col class="mb-4">
-                <p class="card-text">Quel horraire de recommandation voulez vous ?</p>
-                <b-button v-b-toggle.collapse-1-inner size="sm">Modifiez</b-button>
-                <b-collapse id="collapse-1-inner" class="mt-2">
-                  <b-card>
-                    <div class="col-md-6">
-                      <div class="md-form md-outline input-with-post-icon timepicker" darktheme="true">
-                        <input type="number" id="dark-version-example" class="form-control" :value="user.data.momentRecommandation[0]" >
-                        <input type="number" id="dark-version-example" class="form-control" :value="user.data.momentRecommandation[1]" >
-                        <label for="dark-version-example">Dark version, 24 hours</label>
-                        <i class="fas fa-envelope  input-prefix"></i>
-                      </div>
-                    </div>
-                  </b-card>
-                </b-collapse>
+            <b-card class="row text-left">
+              <b-col class="m-4">
+                <h4 class="card-text m-4">Mes parametres capteur :</h4>
+                  <b-form-checkbox v-model="Pas" size="lg" switch>
+                    Parametre capteur pas {{Pas}}
+                  </b-form-checkbox>
+                  <b-form-checkbox v-model="Sommeil" size="lg" switch>
+                    Parametre sommeil {{user.data.parametre.PointCoeur}}
+                  </b-form-checkbox>
+              </b-col>
+              <b-col class="m-4">
+                <h4 class="card-text m-4">Autre parametre :</h4>
+                  <b-form-checkbox v-model="Presentation" size="lg" switch>
+                    Affichez le menue de présentation
+                  </b-form-checkbox>
               </b-col>
               <b-col  class="mb-4">
-                <p class="card-text">Quel capteur voulez vous ?</p>
-                <b-button v-b-toggle.collapse-2-inner size="sm">Modifiez</b-button>
-                <b-collapse id="collapse-2-inner" class="mt-2">
-                  <b-card>
-                    <b-form-checkbox v-model="NePlusVoirExplication" name="check-button" switch>
-                      Switch Checkbox <b>(Checked: {{ NePlusVoirExplication }})</b>
-                    </b-form-checkbox>
-                  </b-card>
-                </b-collapse>
-              </b-col>
-              <b-col  class="mb-4">
-                <p class="card-text">Quel capteur voulez vous ?</p>
-                <b-button v-b-toggle.collapse-3-inner size="sm">Modifiez</b-button>
-                <b-collapse id="collapse-3-inner" class="mt-2">
-                  <b-card>Hello!</b-card>
-                </b-collapse>
+                <h4 class="col-12 card-text m-4">Heure de recommandation :</h4>
+                <b-col cols="12">
+                  <b-form-input v-model="Time" id="type-time" type="time"></b-form-input>
+                  {{Time}}
+                </b-col>
               </b-col>
             </b-card>
           </b-collapse>
@@ -75,13 +63,16 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import * as firebase from "firebase";
 
 export default {
   data(){
     return{
-      NePlusVoirExplication:false
+      Time:this.user.data.momentRecommandation,
+      Pas:true,//this.user.data.parametre.NombreDePas,
+      Sommeil:false,//this.user.data.parametre.PointCoeur,
+      Presentation:this.user.data.parametre.NePlusVoirExplication
     }
   },
    methods: {
@@ -95,6 +86,10 @@ export default {
           });
         });
     },
+    ...mapActions([
+      "Modify_MomentRecommandation",
+      "SET_PARAMETRE"
+    ])
   },
   computed: {
     ...mapGetters({
