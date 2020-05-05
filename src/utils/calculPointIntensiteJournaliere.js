@@ -6,16 +6,6 @@
  * Au début recommandation aléatoire, puis avec les points
  * et enfin algo ML
  * 
- * Pour l'ajout des points on peut essayer de voir du coté de sa moyenne
- * habituelle on prend le summary a partir des 3 dernières
- * semaines (temps de mise en place des habitudes) (merci le bucket !)
- * selon google => moyenne
- * Si passe au dessus il y a plus d'éffort..
- * On additionne par variable et par le taux de dépassement
- * exemple : moyenne 1000 pas jour
- * S'il fait 3000 pas (il a un ratio de 3x son score habituelle donc
- * plus trois points !)
- * 
  * La forme de data doit etre de la manière suivante :
  * data = {
  *          ArrayLiaison:[
@@ -32,21 +22,27 @@
  *              }
  *          }
  *        }
- * 
- * 
+ * Pour permettre l'ajout des points l'algorithme essayer de voir du coté de sa moyenne
+ * habituelle on prend le summary a partir des 3 dernières semaines (temps de mise en place des habitudes)
+ * l'API google nous fournit sa moyenne directement. 
+ * Si passe au dessus il y a plus d'éffort..
+ * On additionne par variable et par le taux de dépassement
+ * exemple : moyenne 1000 pas jour
+ * S'il fait 3000 pas (il a un ratio de 3x son score habituelle donc
+ * plus trois points !)
+ * => Ceci est pris en compte par le parametre regulation qui adapte les calcul et
+ * l'ajout de point selon les capteurs.
  */
 
-
-
- function recommandation(data, regulation){
+ function calculPointIntensiteJournaliere(data, regulation){
     let pointIntensiteDay = 0;
     for (let liaison in data.ArrayLiaison){
-        let moyenne3SemaineCapteur = data.moyennes3SemainesCapteurs[liaison[0]];
         try {
+            let moyenne3SemaineCapteur = data.moyennes3SemainesCapteurs[liaison[0]];
             console.log(regulation[liaison[1]]);
-            let result = regulation[liaison[1]].calcul(data.donneesJournaliere[liaison[1]])
+            let resultat = regulation[liaison[1]].calcul(data.donneesJournaliere[liaison[1]])
             for(let augmentationFoix in regulation[liaison[1]].AugmentatioNFoixPlusEleve){
-                if (moyenne3SemaineCapteur*augmentationFoix.N <= result){
+                if (moyenne3SemaineCapteur*augmentationFoix.N <= resultat){
                     pointIntensiteDay += augmentationFoix.ajoutPoint
                     break;
                 }
@@ -65,4 +61,4 @@
 import data from "../JsonFile/Step.json"
 import {regulation} from "./regulation"
 
-console.log(recommandation(data, regulation));
+console.log(calculPointIntensiteJournaliere(data, regulation));
