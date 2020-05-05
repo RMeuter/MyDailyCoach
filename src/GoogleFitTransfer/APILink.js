@@ -1,5 +1,6 @@
 
 // ############# https://fireship.io/snippets/how-to-use-google-apis-or-gapi-with-firebase-auth/
+// https://developers.google.com/identity/protocols/oauth2/scopes
 
 import * as firebase from "firebase";
 

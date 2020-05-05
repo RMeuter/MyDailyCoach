@@ -63,7 +63,8 @@ export function endFor (type, ordre){
      * puis intVal qui est le temps pour acquerir ces points coeurs
      */
     //if (type==1)
-
+    console.log(type)
+    console.log(ordre)
 }
 
 
