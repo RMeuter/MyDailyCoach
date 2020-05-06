@@ -36,11 +36,17 @@
         </div>  
         <!-- ############################# Graphique de l'utilisateur ############################# !-->     
         <b-col>
-          <Chart />
+          <GraphiquePas />
         </b-col>
         <b-col>
-          <Mixed />
+          <GraphiquePointCoeur />
         </b-col>
+        <b-col>
+          <GraphiqueSommeil />
+        </b-col>
+        <b-col>
+          <GraphiqueBPM />
+        </b-col>        
       </b-row>          
     </b-container>
     <b-container v-else>
@@ -57,22 +63,32 @@
 </template>
 
 <script>
-import Chart from "./Charts/Chart";
-import Mixed from "./Charts/Mixed";
+// ##### Composante 
+import GraphiquePas from "./Charts/GraphiquePas";
+import GraphiquePointCoeur from "./Charts/GraphiquePointCoeur";
+import GraphiqueSommeil from "./Charts/GraphiqueSommeil";
+import GraphiqueBPM from "./Charts/GraphiqueFrequenceCardiaque"
 import Profil from "./Profil";
 
-import Acti from "../JsonFile/Activity.json";
-
+// ##### Model et getter 
 import { mapGetters, mapActions } from 'vuex';
 import Activite from "../models/Activite"
 
-//https://medium.com/@aaron_lu1/firebase-cloud-firestore-add-set-update-delete-get-data-6da566513b1b
+// ##### Donnee importer et fonction rajouter
+import data from "../JsonFile/userDataFit"
+import activites from "../JsonFile/Activity.json"
+import regulation from "../utils/regulation"
+import calculPointIntensiteJournaliere from "../utils/recommandation"
+
+
 export default {
   name: "StatsUser",
   components:{
-    Chart,
-    Mixed,
-    Profil
+    GraphiquePas,
+    GraphiquePointCoeur,
+    GraphiqueSommeil,
+    GraphiqueBPM,    
+    Profil,
   },
   methods:{
      get_lvlImg(){
@@ -86,7 +102,7 @@ export default {
     ]),
     getRecommandActivite(){
       // Suite de fonction
-      let a_activite = Acti.activite[0];
+      let a_activite = calculPointIntensiteJournaliere(data, regulation, activites);
       const a_new_activite = new Activite(
         a_activite.nom,
             a_activite.image,
@@ -96,7 +112,6 @@ export default {
             a_activite.IntensiteJour,
             a_activite.PointBienEtre,
           );
-      //this.$store.dispatch("Add_PointBienEtre", a_new_activite.ptBienEtre)
       return a_new_activite
     }
   },

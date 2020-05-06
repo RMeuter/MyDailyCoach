@@ -1,41 +1,47 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import Range from "../../utils/Range";
-import data from "../../JsonFile/Step.json"
+import data from "../../JsonFile/Step.json";
 
-let i = doHeartPoint(data.heart_point, 1);
-let j = doHeartPoint(data.heart_point, 2);
-function doHeartPoint(data, i) {
+var heure = data.time;
+var donneesCapteur = data.heart_point; 
+
+export default {
+  extends: Bar,
+  methods:{
+    doHeartPoint(i) {
       let ptLi = []
       let timeLi = []
-      data.forEach(
+      donneesCapteur.forEach(
         element => {
           ptLi.push(element[1]);
           timeLi.push(element[0]);
           });
       if (i == 1) return ptLi
       else return timeLi
+    },
+    faireArrayHeure(){
+      let arrayHeureMinute = [];
+      heure.forEach(temps =>{
+        arrayHeureMinute.push((new Date(temps)).toTimeString().slice(0,5))
+      })
+      return arrayHeureMinute;
     }
-
-export default {
-  extends: Bar,
-  methods:{
   },
   data() {
     return {
       chartdata: {
-        labels: Range(0, 23, 1),
+        labels: this.faireArrayHeure(),
         datasets: [
             {
               label: 'Minutes consacrer pour les points coeurs',
               backgroundColor: '#2090DB',
-              data: i,
+              data: this.doHeartPoint(1),
               type: "line"
             }, {
               label: 'Point coeur',
               backgroundColor: '#40A451',
-              data: j,
+              data: this.doHeartPoint(2),
               type: "bar"
             }
           ]},
