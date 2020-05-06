@@ -65,12 +65,17 @@ export default new Vuex.Store(
             );
             state.user.data.momentRecommandation = nouvelleHeure;
         }, 
-        SET_PARAMETRE(state, idParams, parametre){
-            let arrayParams = fonctionChangementParametre(idParams, parametre); 
+        SET_PARAMETRE(state, parametre){
+            /**
+             * Voir si on peut ici changer en voyant si le changement est pareil qu'avant 
+             * et donc inutile de faire la manip suivante
+             */
+            let arrayParams = fonctionChangementParametre(parametre[0], parametre[1]); 
             db.collection("UserExtraInfos").doc(state.user.data.uid).update(
                 arrayParams[0]
             );
-            state.user.data.parametre[arrayParams[1]] = parametre; 
+            state.user.data.parametre[arrayParams[1]] = parametre[1];
+             
         }
     },
     actions: {
@@ -80,6 +85,8 @@ export default new Vuex.Store(
              * Et donc il commit directement apres
              * */ 
             commit("SET_LOGGED_IN", data !== null);
+            console.log("data !== null")
+            console.log(data !== null)
             if (data.extra) {
                 let obj = {
                     uid : data.user.uid,
@@ -98,8 +105,8 @@ export default new Vuex.Store(
             commit("SET_DERNIERE_RECOMMANDATION_VU");
             commit("SET_POINT_BIEN_ETRE", ajoutPoint );
         },
-        Modify_Params({ commit }, idParams, parametre) {
-            commit("SET_PARAMETRE", idParams, parametre);
+        Modify_Params({ commit }, parametre) {
+            commit("SET_PARAMETRE", parametre);
         },
         Modify_MomentRecommandation({ commit }, nouvelleHeure) {
             commit("SET_MOMENT_RECOMMANDATION", nouvelleHeure );

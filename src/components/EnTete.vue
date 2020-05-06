@@ -23,23 +23,38 @@
               <b-col class="m-4">
                 <h4 class="card-text m-4">Mes parametres capteur :</h4>
                   <b-form-checkbox v-model="Pas" size="lg" switch>
-                    Parametre capteur pas {{Pas}}
+                    Parametre capteur pas
                   </b-form-checkbox>
                   <b-form-checkbox v-model="Sommeil" size="lg" switch>
-                    Parametre sommeil {{user.data.parametre.PointCoeur}}
+                    Parametre sommeil
                   </b-form-checkbox>
+                  <b-col offset="4" cols="4" class="p-4">
+                    <b-button @click="modifCapteur()" variant="light">
+                      J'enregistre ! 
+                    </b-button>
+                  </b-col>
               </b-col>
               <b-col class="m-4">
                 <h4 class="card-text m-4">Autre parametre :</h4>
                   <b-form-checkbox v-model="Presentation" size="lg" switch>
                     Affichez le menue de présentation
                   </b-form-checkbox>
+                  <b-col offset="4" cols="4" class="p-4">
+                    <b-button @click="Modify_Params([0, Presentation])">
+                    J'enregistre !
+                    </b-button>
+                  </b-col>
               </b-col>
               <b-col  class="mb-4">
-                <h4 class="col-12 card-text m-4">Heure de recommandation :</h4>
-                <b-col cols="12">
-                  <b-form-input v-model="Time" id="type-time" type="time"></b-form-input>
-                  {{Time}}
+                <h4 class="col-12 card-text text-dark m-4">Heure de recommandation :</h4>
+                  Votre heure de recommandation actuelle : {{formatHeure()}}
+                <b-col offset="4" cols="4" text-variant="primary">
+                  <b-time v-model="momentReco"></b-time>
+                </b-col>
+                <b-col offset="4" cols="4" class="p-4">
+                  <b-button @click="Modify_MomentRecommandation(stringConvertArrayNumber())">
+                    J'enregistre !
+                  </b-button>
                 </b-col>
               </b-col>
             </b-card>
@@ -65,36 +80,58 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import * as firebase from "firebase";
+//import { db } from "../main.js";
+var nomVar = ["Presentation", "Pas", "Sommeil"]  
 
 export default {
   data(){
     return{
-      Time:this.user.data.momentRecommandation,
-      Pas:true,//this.user.data.parametre.NombreDePas,
-      Sommeil:false,//this.user.data.parametre.PointCoeur,
-      Presentation:this.user.data.parametre.NePlusVoirExplication
+      Presentation:false,
+      Pas:false,
+      Sommeil:false,
+      momentReco:null,
     }
   },
    methods: {
+     modifCapteur(){
+       for(let param in [1, 2]){
+         this.Modify_Params([param, this[nomVar[param]]])
+       }
+     },
     signOut() {
       firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          this.$router.replace({
-            name: "signin"
-          });
+      .auth()
+      .signOut()
+      .then(() => {
+        this.$router.replace({
+          name: "signin"
         });
+      });
     },
     ...mapActions([
       "Modify_MomentRecommandation",
-      "SET_PARAMETRE"
-    ])
+      "Modify_Params"
+    ]),
+    formatHeure(){  
+      //console.log("this.user.data.momentRecommandation")
+      //console.log(this.user.data.momentRecommandation)
+      if(this.user){
+        if( "momentRecommandation" in this.user.data)
+          //return (this.user.data.momentRecommandation).join(":") ##################### VOir ce qui cloche ici !!!
+          return "12:13"
+        else
+          return null
+      }
+    },
+    stringConvertArrayNumber(){
+      return ((this.momentReco.slice(0,5)).split(":")).map(a => {return parseInt(a)})
+    }
   },
   computed: {
     ...mapGetters({
       user: "user"
-    })
+    }),
+    
   }
 };
 </script>

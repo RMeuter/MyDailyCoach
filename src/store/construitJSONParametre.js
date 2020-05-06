@@ -4,18 +4,15 @@ export default function(idParametre,parametreChangeant){
         "useParametre.NePlusVoirExplication":null,
         },
         {
-            "useParametre.NombreDePas":null,
+            "useParametre.capteurPas":null,
         },{
-            "useParametre.PointCoeur":null,
-        },{
-            "useParametre.freqCardiaque":null,
-        },
+            "useParametre.capteurSommeil":null,
+        }
     ]
     let array = [
         "NePlusVoirExplication",
-        "NombreDePas",
-        "PointCoeur",
-        "freqCardiaque"
+        "capteurPas",
+        "capteurSommeil"
     ] 
     let key = Object.keys(obj[idParametre])[0]
     obj[idParametre][key] = parametreChangeant
