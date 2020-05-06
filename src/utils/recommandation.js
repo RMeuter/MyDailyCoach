@@ -33,11 +33,11 @@
   Nom de la fonction : calculPointIntensiteJournaliere
  */
 
-module.exports = function (data, regulation, Activites){
+export default function (data, regulation, Activites){
     let capteurDispo = [0, 0];
     let pointIntensiteDay = [0, 0];
+    console.log(data)
     for (let liaison in data.ArrayLiaison){
-        //console.log(data.ArrayLiaison[liaison][1])
         try {
             let moyenne3SemaineCapteur = data.moyennes3SemainesCapteurs[data.ArrayLiaison[liaison][0]];
             let resultat = regulation[data.ArrayLiaison[liaison][1]].Calcul(data.donneesJournaliere[data.ArrayLiaison[liaison][1]])
@@ -58,6 +58,7 @@ module.exports = function (data, regulation, Activites){
     for(let capteur in capteurDispo){
         pointMoyen += pointIntensiteDay[capteur]/capteurDispo[capteur];
     }
+    console.log(pointMoyen)
     return trouveActivite (pointMoyen, Activites.activite); // ############ A prendre en compte lorsqu'integration a firebase ! => Activites.activite devient Activites !  
  }
 
