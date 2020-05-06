@@ -1,5 +1,8 @@
 <template>
   <div>
+    <b-form-checkbox v-model="checked1" name="check-button">
+      Réinitialisation ou intégration des parametres : <strong>{{ checked1 }}</strong>
+    </b-form-checkbox>
     <button @click="signin" class="btn">
       Connection par Google uniquement
     </button>
@@ -11,12 +14,15 @@
 import * as firebase from "firebase";
 import { db } from "../main.js";
 
+
+
 export default {
   name: "Signin",
   data() {
     return {
       error: "",
-      success: ""
+      success: "",
+      checked1:true
     };
   },
   methods: {
@@ -30,7 +36,7 @@ export default {
       .auth()
       .signInWithPopup(provider)
       .then( data => {
-        if (data.additionalUserInfo.isNewUser){
+        if (data.additionalUserInfo.isNewUser || this.checked1){
           // savoir si nouveau visiteur : result.additionalUserInfo.isNewUser = false ou true
           data.user.updateProfile(
             {
@@ -54,7 +60,6 @@ export default {
             dernierRecommandationVu: (new Date()).getTime(),
             useParametre:{
               "NePlusVoirExplication":false,
-              "PointBienEtre":false,
               "NombreDePas":false,
               "PointCoeur":true,
               "freqCardiaque":true
