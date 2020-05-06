@@ -80,7 +80,7 @@
 <script>
 import { mapGetters, mapActions } from "vuex";
 import * as firebase from "firebase";
-//import { db } from "../main.js";
+
 var nomVar = ["Presentation", "Pas", "Sommeil"]  
 
 export default {
@@ -113,12 +113,9 @@ export default {
       "Modify_Params"
     ]),
     formatHeure(){  
-      //console.log("this.user.data.momentRecommandation")
-      //console.log(this.user.data.momentRecommandation)
       if(this.user){
         if( "momentRecommandation" in this.user.data)
-          //return (this.user.data.momentRecommandation).join(":") ##################### VOir ce qui cloche ici !!!
-          return "12:13"
+          return (this.user.data.momentRecommandation).join(":")
         else
           return null
       }
