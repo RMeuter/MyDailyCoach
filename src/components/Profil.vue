@@ -4,16 +4,12 @@
         <b-img :src="get_lvlImg()" fluid alt="Fluid image"></b-img> <br>
         </b-col>
         <b-col cols="6">
-        Votre nombre de point : {{niveau.nombreDePoint}} --- Votre progression : {{user.data.pointBienEtre}}
-        <div class="progress">
-            <div 
-            class="progress-bar progress-bar-striped progress-bar-animated" 
-            role="progressbar" 
-            :aria-valuenow="user.data.pointBienEtre" 
-            :aria-valuemin="niveau.nombreDePoint" 
-            :aria-valuemax="niveau.niveauSup" :style="progress">
-            </div>
-        </div>
+          Mon niveau : <i>{{niveau.nomNiveau}}</i>
+            <b-progress 
+            :value="user.data.pointBienEtre" 
+            :max="niveau.niveauSup"
+            show-progress animated
+            ></b-progress>
         {{niveau.commentaire}} <br>
         </b-col>
     </b-col>
@@ -30,9 +26,6 @@ export default {
   methods:{
      get_lvlImg(){
       return require(`../assets/LevelImage/${this.niveau.photoLevel}`)
-    },
-    progress(){
-      return {width :Math.round(100*((this.user.data.pointBienEtre-this.niveau.nombreDePoint)/this.niveau.niveauSup))}
     }
   },
   

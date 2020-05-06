@@ -7,8 +7,7 @@ import { db } from "../main.js";
 import fonctionChangementParametre from "./construitJSONParametre"
 
 Vue.use(Vuex);
-// Vidéo tuto pour comprendre le fonctionnement :
-// https://www.youtube.com/watch?v=OjM7hzcdBrs
+
 export default new Vuex.Store(
     {
     state: {
@@ -22,7 +21,7 @@ export default new Vuex.Store(
             return state.user
         },
         estMomentRecommandation(state){
-            let date = new Date(); //state.user.data.dernierRecommandationVu
+            let date = new Date(); 
             let dateRecommand = new Date();
             dateRecommand.setHours(state.user.data.momentRecommandation[0]);
             dateRecommand.setMinutes(state.user.data.momentRecommandation[1]);
@@ -30,12 +29,14 @@ export default new Vuex.Store(
         },
         niveauObtenu(state){
             for (var i = 0; i < dictLevel.niveau.length; i++){
-                if(state.user.data.pointBienEtre >= dictLevel.niveau[i].nombreDePoint){
+                if(state.user.data.pointBienEtre <= dictLevel.niveau[i].niveauSup){
                     return dictLevel.niveau[i];
                 } 
             }
+            dictLevel.niveau[0]
         },
         get_parametre(){
+            // Va avec les graphiques 
 
         }
     },
@@ -70,10 +71,6 @@ export default new Vuex.Store(
             state.user.data.momentRecommandation = nouvelleHeure;
         }, 
         SET_PARAMETRE(state, parametre){
-            /**
-             * Voir si on peut ici changer en voyant si le changement est pareil qu'avant 
-             * et donc inutile de faire la manip suivante
-             */
             let arrayParams = fonctionChangementParametre(parametre[0], parametre[1]); 
             db.collection("UserExtraInfos").doc(state.user.data.uid).update(
                 arrayParams[0]
@@ -84,10 +81,6 @@ export default new Vuex.Store(
     },
     actions: {
         fetchUser({ commit }, data) { 
-            /**
-             * Lui au lieu de faire store.commit (), il choppe directement commit
-             * Et donc il commit directement apres
-             * */ 
             commit("SET_LOGGED_IN", data !== null);
             console.log("data !== null")
             console.log(data !== null)
