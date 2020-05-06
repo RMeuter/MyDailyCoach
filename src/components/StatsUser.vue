@@ -27,7 +27,7 @@
       </b-row>
       <b-row>
         <!-- ############################# Recommandation ############################# !-->     
-        <div v-if="!estMoment">
+        <div v-if="estMoment">
           <b-button @click="Add_PointBienEtre(getRecommandActivite().ptBienEtre)"
           :to="{name:'detail', params:{activite:getRecommandActivite(), estRecommande:true, nomActivite:getRecommandActivite().nom}}"
           >
@@ -66,6 +66,7 @@ import Acti from "../JsonFile/Activity.json";
 import { mapGetters, mapActions } from 'vuex';
 import Activite from "../models/Activite"
 
+//https://medium.com/@aaron_lu1/firebase-cloud-firestore-add-set-update-delete-get-data-6da566513b1b
 export default {
   name: "StatsUser",
   components:{

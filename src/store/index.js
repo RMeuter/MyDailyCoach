@@ -22,11 +22,11 @@ export default new Vuex.Store(
             return state.user
         },
         estMomentRecommandation(state){
-            let date = new Date(state.user.data.dernierRecommandationVu);
+            let date = new Date(); //state.user.data.dernierRecommandationVu
             let dateRecommand = new Date();
             dateRecommand.setHours(state.user.data.momentRecommandation[0]);
             dateRecommand.setMinutes(state.user.data.momentRecommandation[1]);
-            return date >= dateRecommand && date <= dateRecommand.setHours(dateRecommand.getHours + 4);
+            return date >= dateRecommand && date <= dateRecommand.setHours(dateRecommand.getHours() + 4);
         },
         niveauObtenu(state){
             for (var i = 0; i < dictLevel.niveau.length; i++){
@@ -34,6 +34,9 @@ export default new Vuex.Store(
                     return dictLevel.niveau[i];
                 } 
             }
+        },
+        get_parametre(){
+
         }
     },
     mutations: {
@@ -45,7 +48,8 @@ export default new Vuex.Store(
         },
         SET_POINT_BIEN_ETRE(state, nombreAAjouter){
             let date = new Date();
-            if (state.user.data.dernierRecommandationVu != date.toLocaleDateString()){
+            let derDate = new Date(state.user.data.dernierRecommandationVu);
+            if (derDate > date.setHours(date.getHours()-20)){
                 state.user.data.pointBienEtre += nombreAAjouter;
                 db.collection("UserExtraInfos").doc(state.user.data.uid).update(
                     {pointBienEtre: state.user.data.pointBienEtre}
