@@ -38,12 +38,10 @@ export default {
       .then( data => {
         if (data.additionalUserInfo.isNewUser || this.checked1){
           // savoir si nouveau visiteur : result.additionalUserInfo.isNewUser = false ou true
+          console.log(data.user.displayName)
           data.user.updateProfile(
             {
-            displayName:
-                this.$options.filters.capitalize(this.user.firstname) +
-                " " +
-                this.$options.filters.capitalize(this.user.lastname),
+            displayName:"gros tas"
             }
           ).then(
             ()=>{
@@ -60,9 +58,8 @@ export default {
             dernierRecommandationVu: (new Date()).getTime(),
             useParametre:{
               "NePlusVoirExplication":false,
-              "NombreDePas":false,
-              "PointCoeur":true,
-              "freqCardiaque":true
+              "capteurPas":true,
+              "capteurSommeil":true
             }
           });
         }
