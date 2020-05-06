@@ -17,6 +17,15 @@
             "url":"https://www.youtube.com/embed/QjoZfET5kJ8",
             "IntensiteJour" : 1,
             "PointBienEtre": 2
+        },
+        {
+            "nom":"Course à pied",
+            "cat":"Activité sportive intense",
+            "image":"souffle.jpg",
+            "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
+            "url":"https://www.youtube.com/embed/QjoZfET5kJ8",
+            "IntensiteJour" : 10,
+            "PointBienEtre": 7
         }
     ]
 
