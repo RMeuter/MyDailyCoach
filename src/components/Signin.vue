@@ -38,10 +38,9 @@ export default {
       .then( data => {
         if (data.additionalUserInfo.isNewUser || this.checked1){
           // savoir si nouveau visiteur : result.additionalUserInfo.isNewUser = false ou true
-          console.log(data.user.displayName)
           data.user.updateProfile(
             {
-            displayName:"gros tas"
+            displayName: data.user.displayName
             }
           ).then(
             ()=>{
