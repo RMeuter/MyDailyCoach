@@ -135,12 +135,14 @@ export default {
 
 <style scoped>
 header {
+  font-size: 2em;
+  color: #41b883;
   width: 100%;
-  font-size: 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
+  text-align: center;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
+
 button.nav-link.signout {
   padding: 0.4em;
   background-color: tomato;

@@ -140,19 +140,5 @@ export default {
 </script>
 
 <style scoped>
-header {
-  width: 100%;
-  font-size: 1em;
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-}
-button.nav-link.signout {
-  padding: 0.4em;
-  background-color: tomato;
-  color: white;
-  text-align: center;
-  border-radius: 5px;
-  border: none;
-}
+
 </style>
