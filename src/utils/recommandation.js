@@ -36,7 +36,6 @@
 export default function (data, regulation, Activites){
     let capteurDispo = [0, 0];
     let pointIntensiteDay = [0, 0];
-    console.log(data)
     for (let liaison in data.ArrayLiaison){
         try {
             let moyenne3SemaineCapteur = data.moyennes3SemainesCapteurs[data.ArrayLiaison[liaison][0]];
@@ -58,7 +57,6 @@ export default function (data, regulation, Activites){
     for(let capteur in capteurDispo){
         pointMoyen += pointIntensiteDay[capteur]/capteurDispo[capteur];
     }
-    console.log(pointMoyen)
     return trouveActivite (pointMoyen, Activites.activite); // ############ A prendre en compte lorsqu'integration a firebase ! => Activites.activite devient Activites !  
  }
 
