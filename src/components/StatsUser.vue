@@ -3,13 +3,14 @@
     <b-container v-if="user.data && niveau"> 
       <b-row>
         <b-col cols="6">
-          <h4> Salut {{user.data.displayName}} </h4>
+          <h4> Salut {{user.data.displayName}}</h4>
         </b-col>
         <!-- ############################# Infos gamifier ############################# !-->     
         <Profil :user="user" :niveau="niveau" />
       </b-row>
+      
       <!-- ############################# Presentation de l'application en trois points ############################# !-->     
-      <b-row v-if="!user.data.parametre.NePlusVoirExplication">
+      <b-row v-show="user.data.parametre.NePlusVoirExplication">
         <b-col cols="12">
           <b-alert show variant="light" class="border-light" dismissible>
             <p>Voici comment fonctionne l'application :</p>
@@ -26,22 +27,24 @@
         </b-col> 
       </b-row>
       <b-row>
+        <b-button @click="getInfos()">Button</b-button>
         <!-- ############################# Recommandation ############################# !-->     
-        <div v-if="estMoment">
-          <b-button @click="Add_PointBienEtre(getRecommandActivite().ptBienEtre)"
+        <div v-show="estMoment">
+          <b-button
+          @click="Add_PointBienEtre(getRecommandActivite().ptBienEtre)"
           :to="{name:'detail', params:{activite:getRecommandActivite(), estRecommande:true, nomActivite:getRecommandActivite().nom}}"
           >
-          La Daily Activity est là !!
+            La Daily Activity est là !!
           </b-button>
         </div>  
         <!-- ############################# Graphique de l'utilisateur ############################# !-->     
-        <b-col>
+        <b-col v-show="user.data.parametre.capteurPas">
           <GraphiquePas />
         </b-col>
         <b-col>
           <GraphiquePointCoeur />
         </b-col>
-        <b-col>
+        <b-col v-show="user.data.parametre.capteurSommeil">
           <GraphiqueSommeil />
         </b-col>
         <b-col>
@@ -72,7 +75,8 @@ import Profil from "./Profil";
 
 // ##### Model et getter 
 import { mapGetters, mapActions } from 'vuex';
-import Activite from "../models/Activite"
+import Activite from "../models/Activite";
+import { db } from "../main.js";
 
 // ##### Donnee importer et fonction rajouter
 import data from "../JsonFile/userDataFit"
@@ -101,7 +105,6 @@ export default {
       "Add_PointBienEtre"
     ]),
     getRecommandActivite(){
-      // Suite de fonction
       let a_activite = calculPointIntensiteJournaliere(data, regulation, activites);
       const a_new_activite = new Activite(
         a_activite.nom,
@@ -113,6 +116,14 @@ export default {
             a_activite.PointBienEtre,
           );
       return a_new_activite
+    },
+    getInfos(){
+      console.log(this.infos)
+    }
+  },
+  firestore() {
+    return{ 
+      infos : db.collection("UserExtraInfos")
     }
   },
   computed: {
