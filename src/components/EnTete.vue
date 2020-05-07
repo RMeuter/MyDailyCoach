@@ -1,7 +1,7 @@
 <template>
   <header>  
     <!-- ##################################### Mode connecter ######################################### !-->
-    <template v-if="user.loggedIn">
+    <template v-if="user.loggedIn && $route.name != 'signin'">
       <b-container >
         <b-row align-h="center">
           <b-col lg="11">
