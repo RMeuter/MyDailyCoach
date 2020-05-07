@@ -1,10 +1,10 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import data from "../../JsonFile/Step.json"
+import data from "../../JsonFile/userDataFit"
 
 
-var donneesCapteur = data.steps; 
+var donneesCapteur = data.donneesJournaliere.CapteurSommeil; 
 
 export default {
   extends: Bar,
@@ -13,18 +13,18 @@ export default {
           let tempsSommeil = 0;
           let arraySommeil = [72, 109, 110, 111, 112];
           for (let arrayActivite in donneesCapteur){
-              let i = 0;
-              while(i < donneesCapteur[arrayActivite].length){
-                  if(arraySommeil.includes(donneesCapteur[arrayActivite][i])){
-                      tempsSommeil += donneesCapteur[arrayActivite][i+1];
-                  }
-                  i+=3
-              }
+            let i = 0;
+            while(i < donneesCapteur[arrayActivite].length){
+                if(arraySommeil.includes(donneesCapteur[arrayActivite][i])){
+                    tempsSommeil += donneesCapteur[arrayActivite][i+1];
+                }
+                i+=3
+            }
           }
-      console.log(tempsSommeil);
-      return 12;//tempsSommeil;
+      return tempsSommeil/3600000;
     },
   },
+  
   data() {
     return {
       chartdata: {
