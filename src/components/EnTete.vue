@@ -9,7 +9,13 @@
               <b-navbar-brand ><H1>My Daily Coach</H1> </b-navbar-brand>
               <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
               <b-collapse id="nav-collapse" is-nav>
-                <b-navbar-nav class="ml-auto">   
+                <b-navbar-nav class="ml-auto">
+                  <template v-if="$route.name == 'stats'">
+                      <b-button variant="white" class="back" to="/activites">Activitées</b-button>
+                  </template> 
+                  <template v-if="$route.name == 'activites' || $route.name == 'detail'">
+                      <b-button variant="white" class="back" to="/stats">Accueil</b-button>
+                  </template>  
                   <b-button v-b-toggle.collapse-1 variant="white">Paramètre</b-button>               
                   <b-button variant="danger" @click.prevent="signOut">Se déconnecter</b-button>
                 </b-navbar-nav>
