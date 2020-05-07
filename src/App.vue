@@ -29,8 +29,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #2c2c32;
   color: white;
-  margin: 0;
-  padding: 0;
+
 }
 
 .title {

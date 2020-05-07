@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-container v-if="user.data && niveau"> 
-      <b-row>
+      <b-row >
         <b-col cols="6">
           <h4> Salut {{user.data.displayName}}</h4>
         </b-col>
@@ -26,18 +26,29 @@
           </b-alert>
         </b-col> 
       </b-row>
-      <b-row>
-        <b-button @click="getInfos()">Button</b-button>
-        <!-- ############################# Recommandation ############################# !-->     
-        <div v-show="estMoment">
-          <b-button
-          @click="Add_PointBienEtre(getRecommandActivite().ptBienEtre)"
-          :to="{name:'detail', params:{activite:getRecommandActivite(), estRecommande:true, nomActivite:getRecommandActivite().nom}}"
-          >
-            La Daily Activity est là !!
-          </b-button>
-        </div>  
-        <!-- ############################# Graphique de l'utilisateur ############################# !-->     
+
+      <b-row class="mt-3 ">
+        <b-col align="center"> 
+          <b-button variant = "danger" @click="getInfos()">Button</b-button>
+        </b-col>
+      </b-row>*
+      
+        <!-- ############################# Recommandation ############################# !-->  
+      <b-row class="mt-1 mb-4">
+        <b-col align="center">    
+          <div v-show="estMoment">
+            <b-button
+            @click="Add_PointBienEtre(getRecommandActivite().ptBienEtre)"
+            :to="{name:'detail', params:{activite:getRecommandActivite(), estRecommande:true, nomActivite:getRecommandActivite().nom}}"
+            >
+              La Daily Activity est là !!
+            </b-button>
+          </div>  
+        </b-col>
+      </b-row>
+
+        <!-- ############################# Graphique de l'utilisateur ############################# !-->   
+        <b-row>  
         <b-col v-show="user.data.parametre.capteurPas">
           <GraphiquePas />
         </b-col>
@@ -52,6 +63,7 @@
         </b-col>        
       </b-row>          
     </b-container>
+
     <b-container v-else>
       <div style="width:100%;height:0;padding-bottom:57%;position:relative;">
         <iframe 
@@ -140,5 +152,8 @@ export default {
 </script>
 
 <style scoped>
-
+button.navlink.getInfos(){
+  background-color: tomato;
+   border-radius: 5px;
+}
 </style>
