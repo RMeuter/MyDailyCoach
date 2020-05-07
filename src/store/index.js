@@ -34,10 +34,6 @@ export default new Vuex.Store(
                 } 
             }
             dictLevel.niveau[0]
-        },
-        get_parametre(){
-            // Va avec les graphiques 
-
         }
     },
     mutations: {
@@ -72,6 +68,7 @@ export default new Vuex.Store(
         }, 
         SET_PARAMETRE(state, parametre){
             let arrayParams = fonctionChangementParametre(parametre[0], parametre[1]); 
+            console.log(arrayParams);
             db.collection("UserExtraInfos").doc(state.user.data.uid).update(
                 arrayParams[0]
             );
