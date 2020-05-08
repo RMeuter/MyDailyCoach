@@ -29,9 +29,9 @@
 
       <b-row class="mt-3 ">
         <b-col align="center"> 
-          <b-button variant = "danger" @click="getInfos()">Button</b-button>
+          <b-button class="col-4" variant = "danger" @click="getInfos()">Mes informations</b-button>
         </b-col>
-      </b-row>*
+      </b-row>
       
         <!-- ############################# Recommandation ############################# !-->  
       <b-row class="mt-1 mb-4">

@@ -2,6 +2,7 @@
   <div class="p-2">
     <b-container>
       <b-row>
+        <b-button class="back" to="/activites">Retour aux activitées</b-button>
         <h2 class="col-12 text-center m-3">
           <span v-show="estRecommande"> Ma Daily activité :</span>
           {{activite.nom}}
@@ -25,8 +26,6 @@
             </b-col>
         </b-row>
     </b-container>
-    <router-link class="back" to="/stats">Retour sur l'accueil</router-link>
-    <router-link class="back" to="/activites">Retour sur les différentes activités</router-link>
   </div>
 </template>
 
