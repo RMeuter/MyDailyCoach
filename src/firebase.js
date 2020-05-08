@@ -7,17 +7,17 @@
 //import "@firebase/firestore";
 
 
-/*const config = {
-  apiKey: "AIzaSyD6czB7vsdnpAFW_NOS6tGyNGkzawNGGZI",
-  authDomain: "happyevening.firebaseapp.com",
-  databaseURL: "https://happyevening.firebaseio.com",
-  projectId: "happyevening",
-  storageBucket: "happyevening.appspot.com",
-  messagingSenderId: "776464730949",
-  appId: "1:776464730949:web:28ccf2bd57a7afa5350c2c",
-  measurementId: "G-KM3FPZMGT5"
+ export default {  
+ apiKey: "AIzaSyD6czB7vsdnpAFW_NOS6tGyNGkzawNGGZI",
+ authDomain: "happyevening.firebaseapp.com",
+ databaseURL: "https://happyevening.firebaseio.com",
+ projectId: "happyevening",
+ storageBucket: "happyevening.appspot.com",
+ messagingSenderId: "776464730949",
+ appId: "1:776464730949:web:28ccf2bd57a7afa5350c2c",
+ measurementId: "G-KM3FPZMGT5"
   };
-
+/*
 firebase.initializeApp(config);
 
 export const db = firebase.firestore();
