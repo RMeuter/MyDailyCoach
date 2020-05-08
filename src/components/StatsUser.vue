@@ -31,7 +31,7 @@
         <b-col align="center"> 
           <b-button class="col-4" variant = "danger" @click="getInfos()">Mes informations</b-button>
         </b-col>
-      </b-row>*
+      </b-row>
       
         <!-- ############################# Recommandation ############################# !-->  
       <b-row class="mt-1 mb-4">

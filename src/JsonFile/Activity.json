@@ -11,7 +11,7 @@
         },
         {
             "nom":"Maintenir son souffle",
-            "cat":"Activité sportive intense",
+            "cat":"Relaxation",
             "image":"souffle.jpg",
             "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
             "url":"https://www.youtube.com/embed/QjoZfET5kJ8",
@@ -22,10 +22,46 @@
             "nom":"Course à pied",
             "cat":"Activité sportive intense",
             "image":"souffle.jpg",
-            "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
+            "desc":"Courir permet de mettre en mouvement votre corps après une journée de travail assis",
             "url":"https://www.youtube.com/embed/QjoZfET5kJ8",
             "IntensiteJour" : 10,
             "PointBienEtre": 7
+        }
+        {
+            "nom":"Yoga anti stress",
+            "cat":"Relaxation",
+            "image":"souffle.jpg",
+            "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
+            "url":"https://www.youtube.com/watch?v=BHIY4jSh3OY",
+            "IntensiteJour" : 5,
+            "PointBienEtre": 8
+        }
+        {
+            "nom":"Yoga",
+            "cat":"Activité sportive",
+            "image":"souffle.jpg",
+            "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
+            "url":"https://www.youtube.com/watch?v=_mXncvpI950",
+            "IntensiteJour" : 5,
+            "PointBienEtre": 8
+        }
+        {
+            "nom":"Etirements",
+            "cat":"Activité sportive",
+            "image":"souffle.jpg",
+            "desc":"Eliminez les tensions accumulées dans votre corps au cour de la journée grâce aux étirements",
+            "url":"https://www.youtube.com/watch?v=WFXt7H1fEr4&feature=youtu.be",
+            "IntensiteJour" : 5,
+            "PointBienEtre": 8
+        }
+        {
+            "nom":"Mieux s'endormir",
+            "cat":"Relaxation",
+            "image":"souffle.jpg",
+            "desc":"Une musique appropriée peut aider à mieux s'endormir, que ce soit le soir ou pour une sieste",
+            "url":"https://www.youtube.com/watch?v=u6HG_sqpLtM",
+            "IntensiteJour" : 5,
+            "PointBienEtre": 8
         }
     ]
 
