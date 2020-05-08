@@ -6,13 +6,13 @@
           <span v-show="estRecommande"> Ma Daily activité :</span>
           {{activite.nom}}
         </h2>
-        <h5 class="col-12 text-left mb-5">Catégorie : {{activite.cat}}</h5>
-        <h5 v-show="estRecommande" class="col-12 mb-5">Vous obtenez {{activite.ptBienEtre}} points Bien-Etre</h5>
+        <h5 class="col-12 text-left mb-5">Catégorie : {{activite.categorie}}</h5>
+        <h5 v-show="estRecommande" class="col-12 mb-5">Vous obtenez {{activite.PointBienEtre}} points Bien-Etre</h5>
       </b-row>
         <b-row>
             <b-card :style="css_styles" :img-src="get_img_activite()" img-alt="Card image" img-left class="mb-3 col-12 border-dark">
               <b-card-text>
-                {{activite.desc}}
+                {{activite.description}}
               </b-card-text>
             </b-card>
             <b-col cols="12" class=" border-dark rounded" :style="css_styles">
@@ -41,12 +41,12 @@ export default {
   },
   methods: {
     get_img_activite(){
-      return require(`../assets/Activite/${this.activite.pic}`)
+      return require(`../assets/Activite/${this.activite.get_image()}`)
     }
   },
   computed:{
     css_styles() {
-      return { "background-color": this.activite.color }; //création dynamique de style css
+      return { "background-color": this.activite.couleur }; //création dynamique de style css
     },
   },
   beforeRouteEnter(to, from, next) {

@@ -20,7 +20,7 @@
                   </b-col>
                   <b-col>
                     <p class="mb-1">
-                      {{activite.desc}}
+                      {{activite.description}}
                       <router-link
                       :to="{name:'detail', params:{activite:activite, estRecommande:false, nomActivite:activite.nom}}"
                       >Lien vers l'activité !</router-link> 
@@ -28,11 +28,11 @@
                     <b-list-group>
                       <b-list-group-item class="bg-dark">
                         Pour une journée intensive sur 10 :
-                        <b-badge variant="primary" pill>{{activite.intenDay}}</b-badge>
+                        <b-badge variant="primary" pill>{{activite.IntensiteJour}}</b-badge>
                       </b-list-group-item>
                       <b-list-group-item class="bg-dark">
                         Point Bien etre en jeu :
-                        <b-badge variant="primary" pill>{{activite.ptBienEtre}}</b-badge>
+                        <b-badge variant="primary" pill>{{activite.PointBienEtre}}</b-badge>
                       </b-list-group-item>
                     </b-list-group> 
                   </b-col>
