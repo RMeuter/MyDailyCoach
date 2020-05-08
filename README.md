@@ -1,38 +1,6 @@
-## Rappel Markdow (titre 1) :
-
-*italique*  
-**Gras**  
-
-1. Item 1  
-
-Liste : 
- 
-* item1
-  
-    - sous item
-  
-
-
-[Lien url markdown](https://guides.github.com/features/mastering-markdown/)  
-![image](http://mon-url.com)  
-> citation  
-
-```
-Text de code !  
-```
-`Text coder !`  
-> - Citation avec barre  
-
-@Adress  
-- [x] Checkboxe  
-## Tableau :  
-One Cell | tow Cell  
--------- | --------  
-Suite 1 | suite 2  
-
 # MyDailyCoach  
 
-## **Projet santé bien etre**  
+## ***Projet santé bien etre***  
 
 Ce projet vis un public ayant besoin de trouver des activités alternes pour rendre leur journée plus appaisante.
 
@@ -40,7 +8,26 @@ Ce projet vis un public ayant besoin de trouver des activités alternes pour ren
 
 ## Documentation utilisation
 
-Il faut se connection teste et puis voila voila !
+L'utilisation de l'application nécéssite de posséder un compte google par lequel vous vous authentifirez.
+
+Une fois cette conditions remplis, vous pouvez vous connecter avec votre comptes, vous aurez accès à une page d'accueil.
+De cette page, vous aurez la possibilité :  
+
+- De visualiser l'activité de votre journée par des graphiques sur votre temps de sommeil, fréquence cardiaque, point coeur et nombre de pas.
+- D'avoir accès si c'est l'heure, à votre recommandation d'activité qui vous correspondra à ce moment.
+- Avoir accès au différentes activités que nous proposons.
+
+Des activités, vous pourrez :
+
+- Visualisez une vidéo qui vous permettra d'effectuer de pratiquer l'exercice.
+- Obtenir des points Bien-Etre, si vous effectuer votre activités de recommandation. Evoluez et progressez selon nos niveau jusqu'à devenir la zenitude incarnée.  
+
+A la suite de votre connection, quelque soit la page, vous pourrez :
+
+- Changer les paramètres en haut de votre écran (Heure de recommandation, affichage des graphiques nombre de pas et sommeil, affichage de la présentation)  
+- Vous déconnectez.
+
+L'équipe MyDailyCoach vous souhaites une bonne journée.
 
 ## Documentation technique
 
@@ -50,9 +37,7 @@ Nous utilisons divers moyens, tels que :
 * L'API Google Fit (v1)
 * Firebase de Google (Base de donnée instantanée)
 
-### Sommaire
-
-Ce qui est intégré dans l'application, selon secteur suivant :  
+### Sommaire  
 
 - Gestion utilisateur,
 - Graphique,
@@ -63,7 +48,7 @@ Ce qui est intégré dans l'application, selon secteur suivant :
 
 Cette partie est centrale pour l'application car il assure la liaison avec toutes les activités de l'application.
 
-Comprends :  
+Elle comprends :  
 
 - Authentification,  
 - Gestion des parametres,  
@@ -126,7 +111,7 @@ Dans cette partie nous avons 4 types d'actions (dont les mécanismes sont effect
 
 ##### 3. Récuperation des données par google fit (partie encore en développement)
 
-Pour permettre la liaison avec google fit, nous utiliserons le plugin `vue-gapi version 0.2.2`.  
+Pour permettre la liaison avec google fit, nous utiliserons le plugin `vue-gapi` version 0.2.2.  
 
 Nous détaillerons trois sous-parties ici :
 
@@ -253,7 +238,32 @@ Les activités sont déjà séparer en trois catégories comme cité avant :
 
 Les activités choisit sont soit de nature relaxante pour au mieux satifaire les journées sportive mais stressante, soit sportive pour satifaire les journée non sportive selon l'intensité du stress. Cependant, pour les différentes activités, cela n'est que le commencement, nous comptons étendre les catégories et permettre de compensées au mieux l'activité et stress de nos visiteurs. Pour cela nous comptons à l'avenir trouver plus d'activité, également trouver des indicateurs plus performant pour l'intensité de la journée et reseigner au mieux de l'état de l'utilisateur à ce moment.
 
-
 #### Recommandation
 
-Sur ce dernier point nous allons aborder la recommandation de l'activité 
+Sur ce dernier point nous allons aborder la recommandation de l'activité. L'algorithme s'effectue en deux phases :
+
+- La selection des activités recommandables
+- La selection final basé sur un système de recommandation utilisateur (amélioration future)
+
+
+##### 1. La selection des activités recommandables
+
+La permière partie de l'algorithme est disponible dans le fichier `./src/utils/recommandation.js`. Dans cette partie, nous cherchons à crée une liste des activités recommandables selon ces données.
+
+Pour cela, nous nous basons sur la routine/habitude des utilisateurs en recueillant les données des trois dernières semaines. A partir de ces données nous verifions l'ecart entre sa moyenne et ces données journalières. Plus l'écart est grand entre ces habitudes et ces données journalières plus, le score d'intensité sera grand. Nous ajoutons ce score au score initiale pour chaque type de capteur. C'est à dire que nous faisant la moyenne des scores d'intensité pour les capteurs d'activité et de stress puis nous sommons les deux.
+
+**Remarque et axe d'amélioration :** Actuellement nous n'avons pas encore différencier les scores de stress et d'activité pour la recommandation d'activité mais cela s'effectuera à l'aide d'une liste des nombres distinct.
+
+Une fois le score journalier obtenu, nous selectionnons les activités ayant un score compris entre celui générer à 4 points d'intensités supérieurs.
+A partir de cela nous obtenons notre liste d'activitées recommandables.
+
+Problème et réflexion à l'avenir :
+
+- Le manque de données, tel que si l'utilisateur n'utilise plus sa montre les données seront manquantes. Cela à pour conséquence que les routines/habitudes de l'utilisateur sont faussés, donc moins précise. Ainsi la selection d'activité risque de ne pas correspondre. Cependant, toujour dans une perpective d'amélioration nous essayons de trouver un moyen de pallier en utilisant une recommandation sur la base d'un profil ressemblant.
+- Le score d'intensité risque de manquer de précision, cependant nous remederons à cela par soit l'utilisateur de capteurs donnant plus d'information, soit par une analyse statistique de la satisfaction clients (un questionnaire ajouté au sein de l'application dans le but de son développement).  
+
+##### 2. La selection final basé sur un système de recommandation utilisateur (amélioration future)  
+
+Cette partie n'est qu'une réflexion, l'activité recommandée actuellement est choisit de manière aléatoire.  
+
+Dans cette perspective future, nous souhaiterons ajouter un système de notage d'activité stocker dans une collection firebase. Ainsi, nous pourrions à partir de ces données établir un filtrage colaboratif permettant de mettre en lien les activités recommander selon les types de profils utilisateurs. Le but étant de l'algorithme de recommander à un individu, une activité qui correspondrai au gout des utilisateurs partageant des préférences similaires.
