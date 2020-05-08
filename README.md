@@ -46,7 +46,7 @@ Il faut se connection teste et puis voila voila !
 
 Nous utilisons divers moyens, tels que :
 
-* Le serveur Nodejs combinée à Vuejs (Nodejs : 8.12, Vuejs : 2.6.11)
+* Le serveur Nodejs combinée à Vuejs (Nodejs : 12.16.3, Vuejs : 2.6.11)
 * L'API Google Fit (v1)
 * Firebase de Google (Base de donnée instantanée)
 
@@ -126,8 +126,7 @@ Dans cette partie nous avons 4 types d'actions (dont les mécanismes sont effect
 
 ##### 3. Récuperation des données par google fit (partie encore en développement)
 
-Pour permettre la liaison avec google fit, nous utiliserons le plugin `vue-gapi version 0.2.2`.
-
+Pour permettre la liaison avec google fit, nous utiliserons le plugin `vue-gapi version 0.2.2`.  
 
 Nous détaillerons trois sous-parties ici :
 
@@ -135,7 +134,7 @@ Nous détaillerons trois sous-parties ici :
 - La méthode de récupération des données envisagée
 - Les données reçues et tranformation
 
-**La méthode de récupération des données actuelles**
+**La méthode actuelle de récupération des données**
 
 Le serveur est situé dans le dossier `./src/GoogleFitTransfer/index.js`.
 
@@ -147,7 +146,7 @@ Ici, nous souhaitons utilisé le package `vue-gapi` (version 0.2.2).
 Nous souhaitons nous basé sur ce [tutoriel](https://medium.com/google-cloud/using-google-apis-with-firebase-auth-and-firebase-ui-on-the-web-46e6189cf571).  
 L'objetif de `vue-gapi` permet de récupéré le tocken générer par Oauth2 et de le réutiliser dans l'authentification firebase, cela permettra de relier les deux authentifications, ainsi se connecter tous en recupérant les informations `user` ainsi que ces données google fit.
 
-**Les données reçues et tranformation**
+**Les données reçues**
 
 Nous récuperons 4 types de données :
 
@@ -170,7 +169,7 @@ Cette variable est construite par google et nous permet de reseigner sur les tem
 De ces données nous recupérons ces variables pour chaque heure de la journée et nous les utilisons pour les graphiques et la recommandation.  
 Nous recupérons la moyenne journalière depuis les dernières trois semaines pour effectuer notre recommandation. (encore en développement)  
 
-2. Données renseignant l'activité :  
+2. Données renseignant le stress :  
 
 Ces données sont issue du capteur de fréquence cardiaque et d'activité. Par ces deux données, nous pourrons déduire si l'utilisateur a été plus stresser que d'habitude.
 
@@ -179,11 +178,82 @@ Ces données sont issue du capteur de fréquence cardiaque et d'activité. Par c
 De cette données nous recupérons une array de battement par minute relevé par google fit et ce pour chaque heures de la journée, nous les utilisons pour les graphiques et la recommandation.  
 Nous construisons également la moyenne journalière depuis les dernières trois semaines pour effectuer notre recommandation. (encore en développement)  
 
-    2. Donnée d'activité :  
+    2. Donnée d'activitée :  
 
 Cette variable est construite par google, il reseigne l'activité par trois nombres exemple de suite : [72, 3581871, 1]. Le premier nous donne le type d'activité, plus d'information [ici](https://developers.google.com/fit/rest/v1/reference/activity-types). Le second nombre nous donne le temps de l'activité, enfin le dernier nous révèle l'ordre des activités car google fournit une array pour une fentre de temps, ainsi dans une array il peut y avoir plusieur activité donc il donne sur l'information sur l'ordre des activités. Pour recupérer des données lier au stress nous recupérons les données liées au sommeil soit les données comportant le numéro 72.  
 De ces données nous recupérons ces variables pour chaque heure de la journée et nous les utilisons pour les graphiques et la recommandation.  
 Nous recupérons la moyenne journalière depuis trois semaines pour effectuer notre recommandation. (encore en développement)
 
-3. La transformation :  
+#### Template `StatsUser` et ces graphiques  
 
+1. Le template `statsUser.vue`
+
+Le template user et l'épicentre de notre application, il renseigne notre utilisateur sur : 
+
+- les différentes variables utilisées et leur évolution par des graphiques,
+- l'évolution de l'utilisateur dans l'application. Sur le principe de la gamification, nous utilisons des niveaux, pour lequel est référencier :
+    - Le nom du niveau,
+    - Une image plutot humoristique (dévoillant quelqu'un de relaxer en générale), 
+    - Un seuil de point bien etre,
+
+
+2. Nos graphiques 
+
+Pour effectuer nos graphiques, nous utilisons le package `vue-chartjs` version 3.5.0 avec son fichier chart.js version 2.  
+
+Les graphique sont contenus dans le dossier `./src/components/Charts`, et présenter dans le templates `./src/components/StatsUser.vue`. En tout quatre graphiques sont élaborés :
+
+- `GraphiqueFrequenceCardiaque` recence les moyenne des frequences cardiaque par heure. Pour cela il recupere la liste de fréquence cardiaque et fait la moyenne pour chaque liste. Il présente les données par un graphique courbe.
+- `GraphiquePas` recupere le nombre de pas éffectuer par heure durant la journée et établi un graphique courbe.
+- `GraphiquePointCoeur` recence les temps et nombre de points coeurs par heure. Il effectue une double courbe pour cela avec des histogrammes pour ne nombre de points coeur et une courbe pour le temps obtenu.  
+- `GraphiqueSommeil` recupère le temps de sommeil totale effectué dans la journée et construit un graphique d'une barre.
+
+***Axe d'amélioration future :***  
+
+Une idée intéressante pour que l'utilisateur comprenne mieux son évolution est de rajouter pour chaque graphique les moyennes par heure ou journaliere (cela dépend de la présenation variable évoqué ci-dessus) des 3 dernières semaines. Ainsi l'utilisateur comprendra mieux ces données.  
+
+#### Les Activitées
+
+Dans cette partie nous allons nous intéresser à :
+
+- La construction de l'objet `Activité`,
+- La présentation des activités,
+- Comment les activité sont choisit ?  
+
+##### 1. La construction de l'objet `Activité`  
+
+L'objet activité est issu du model contenu dans le fichier `./src/models/Activite.js`. Ce dernier permet la conversion et une structurations respectés des données json brute transmis. Cette conversion est effectuer dans la `method` vue des fichiers `./src/components/StatsUser.vue` et `./src/components/Activities.vue`.  
+
+Chaque activité possède les paramètres suivants :
+
+* nom : est un `String` il fait référence au nom de l'activité
+* categorie : est un `String` il fait référence au groupe d'activité dont il appartient : (Activité sportive relaxante, Activité sportive intense, Relaxation)
+* image : est un `String` il au nom de l'image qui reprensente l'activité, les images des activité sont stockées dans le dossier `./src/assets/Activite`
+* description : est un `String` il fait référence au descriptif de l'activité et ces biens faits
+* url : est un `String` il fait référence a une vidéo youtube qui montre la bonne partique de l'activité mentionnée
+* IntensiteJour : est un `int`, il renseigne a quel type de journée intense l'activité est adapté et peut etre recommander. C'est une échelle allant de 0 à 10.  
+* PointBienEtre : est un `int`, ce parametre permet de savoir combien de point bien etre vaut l'activité. Le nombre de point s'effectue généralement selon la catégorie et le parametre Intensitejour par nous.
+* couleur : est un `String` il fait référence a un code couleur marquant une catégorie.  
+
+##### 2. La présentation des activités  
+
+Les activités sont présentés aux travers deux composantes :  
+
+- `./src/components/Activities.vue` : Qui presente l'ensemble des activités en liste.
+- `./src/components/Activities.vue` : Qui presente une activité en particulier avec la vidéo qui est présente en plus dans le template. Nottament un parametre d'entré du templates `estRecommande` (qui est un `boolean`) premet de présenter l'activité comme étant celle recommander ou non.
+
+
+##### 3. Comment les activité sont choisit ?  
+
+Les activités sont déjà séparer en trois catégories comme cité avant :
+
+- Activité sportive relaxante,  
+- Activité sportive intense,  
+- Relaxation
+
+Les activités choisit sont soit de nature relaxante pour au mieux satifaire les journées sportive mais stressante, soit sportive pour satifaire les journée non sportive selon l'intensité du stress. Cependant, pour les différentes activités, cela n'est que le commencement, nous comptons étendre les catégories et permettre de compensées au mieux l'activité et stress de nos visiteurs. Pour cela nous comptons à l'avenir trouver plus d'activité, également trouver des indicateurs plus performant pour l'intensité de la journée et reseigner au mieux de l'état de l'utilisateur à ce moment.
+
+
+#### Recommandation
+
+Sur ce dernier point nous allons aborder la recommandation de l'activité 
