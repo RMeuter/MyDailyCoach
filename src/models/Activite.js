@@ -26,26 +26,26 @@ export default class Activite {
             a_ptBienEtre = 0;
         }
         if (Activite.CATEGORIE.includes(a_cat)) {
-            this.cat = a_cat;
-            this.color = Activite.COULEUR[Activite.CATEGORIE.indexOf(a_cat)]
+            this.categorie = a_cat;
+            this.couleur = Activite.COULEUR[Activite.CATEGORIE.indexOf(a_cat)]
         } else {
             const accepted_values = Activite.CATEGORIE.toString();
             throw new Error(`Parameter : "${a_cat}" is not correct, accepted values : ${accepted_values}`);
         }
 
         this.nom = a_nom;
-        this.pic = a_pic;
-        this.desc = a_desc;
+        this.image = a_pic;
+        this.description = a_desc;
         this.url = a_url;
-        this.intenDay = a_intenDay;
-        this.ptBienEtre = a_ptBienEtre;
+        this.IntensiteJour = a_intenDay;
+        this.PointBienEtre = a_ptBienEtre;
     }
 
     get_image() {
-        return this.pic;
+        return this.image;
     }
     get_color(){
-        return this.color;
+        return this.couleur;
     }
 
 }
