@@ -1,13 +1,13 @@
 
 <script>
-import { Bar } from "vue-chartjs";
+import { Line } from "vue-chartjs";
 import data from "../../JsonFile/Step.json"
 
 var heure = data.time;
 var donneesCapteur = data.steps; 
 
 export default {
-  extends: Bar,
+  extends: Line,
   methods:{
     faireArrayHeure(){
       let arrayHeureMinute = [];
