@@ -67,11 +67,10 @@
     <!-- ##################################### Mode Non connecter ######################################### !-->
     <template v-else>
         <b-container >
-        <b-row align-h="start">
-          <b-col align-self="start">
-            <h1 class="mb-5">
-              My Daily Coach
-            </h1>
+        <b-row align-h="center">
+          <b-col >
+            <b-navbar toggleable="lg" type="light" >
+              <b-navbar-brand class="mx-auto"><H1>My Daily Coach</H1> </b-navbar-brand></b-navbar>
           </b-col>
         </b-row>
       </b-container >
@@ -141,10 +140,14 @@ header {
   color: #41b883;
   width: 100%;
   text-align: center;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  /*padding-top: 1em;
+  padding-bottom: 1em;*/
+  background-color: #FFA50099;
+  margin-bottom: 1em
 }
-
+button.back{
+  border: 1px;
+}
 button.nav-link.signout {
   padding: 0.4em;
   background-color: tomato;
@@ -153,6 +156,7 @@ button.nav-link.signout {
   border-radius: 5px;
   border: none;
 }
+
 .display-name {
   margin-right: 2em;
 }
