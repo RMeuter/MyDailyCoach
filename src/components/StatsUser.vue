@@ -29,7 +29,7 @@
 
       <b-row class="mt-3 ">
         <b-col align="center"> 
-          <b-button class="col-4" variant = "danger" @click="getInfos()">Mes informations</b-button>
+          <b-button class="col-4" variant = "info" @click="getInfos()">Mes informations</b-button>
         </b-col>
       </b-row>
       
@@ -38,9 +38,9 @@
         <b-col align="center">    
           <div v-show="estMoment">
             <b-button
+            class="col-4"
             @click="Add_PointBienEtre(getRecommandActivite().ptBienEtre)"
-            :to="{name:'detail', params:{activite:getRecommandActivite(), estRecommande:true, nomActivite:getRecommandActivite().nom}}"
-            >
+            :to="{name:'detail', params:{activite:getRecommandActivite(), estRecommande:true, nomActivite:getRecommandActivite().nom}}" id="dailyActivity">
               La Daily Activity est là !!
             </b-button>
           </div>  
@@ -152,6 +152,11 @@ export default {
 </script>
 
 <style scoped>
+#dailyActivity{
+  background-color: #FDAB72;
+  color: black;
+  border: none;
+}
 button.navlink.getInfos(){
   background-color: tomato;
    border-radius: 5px;
