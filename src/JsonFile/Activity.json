@@ -23,7 +23,7 @@
             "cat":"Activité sportive intense",
             "image":"sportintense.jpg",
             "desc":"Courir permet de mettre en mouvement votre corps après une journée de travail assis",
-            "url":"https://www.youtube.com/embed/QjoZfET5kJ8",
+            "url":"https://www.youtube.com/embed/pP7TCO3kqoM",
             "IntensiteJour" : 10,
             "PointBienEtre": 7
         },
@@ -32,7 +32,7 @@
             "cat":"Activité sportive intense",
             "image":"sportintense.jpg",
             "desc":"Musclez vous et améliorez votre système cardiaque grâce aux entraînements cardio.",
-            "url":"https://www.youtube.com/watch?v=_p9gauFHW4k",
+            "url":"https://www.youtube.com/embed/_p9gauFHW4k",
             "IntensiteJour" : 10,
             "PointBienEtre": 7
         },
@@ -41,7 +41,7 @@
             "cat":"Activité sportive intense",
             "image":"sportintense.jpg",
             "desc":"Gagnez en résistance, vitesse et agilité grâce à des exercices d'endurance",
-            "url":"https://www.youtube.com/watch?v=5uVaKjtJHN8",
+            "url":"https://www.youtube.com/embed/5uVaKjtJHN8",
             "IntensiteJour" : 8,
             "PointBienEtre": 8
         },
@@ -50,7 +50,7 @@
             "cat":"Relaxation",
             "image":"souffle.jpg",
             "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
-            "url":"https://www.youtube.com/watch?v=BHIY4jSh3OY",
+            "url":"https://www.youtube.com/embed/BHIY4jSh3OY",
             "IntensiteJour" : 4,
             "PointBienEtre": 8
         },
@@ -59,7 +59,7 @@
             "cat":"Activité sportive relaxante",
             "image":"sportrelax.jpg",
             "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
-            "url":"https://www.youtube.com/watch?v=_mXncvpI950",
+            "url":"https://www.youtube.com/embed/_mXncvpI950",
             "IntensiteJour" : 5,
             "PointBienEtre": 8
         },
@@ -68,7 +68,7 @@
             "cat":"Activité sportive relaxante",
             "image":"sportrelax.jpg",
             "desc":"Eliminez les tensions accumulées dans votre corps au cour de la journée grâce aux étirements",
-            "url":"https://www.youtube.com/watch?v=WFXt7H1fEr4&feature=youtu.be",
+            "url":"https://www.youtube.com/embed/WFXt7H1fEr4",
             "IntensiteJour" : 7,
             "PointBienEtre": 6
         },
@@ -77,7 +77,7 @@
             "cat":"Relaxation",
             "image":"souffle.jpg",
             "desc":"Une musique appropriée peut aider à mieux s'endormir, que ce soit le soir ou pour une sieste",
-            "url":"https://www.youtube.com/watch?v=u6HG_sqpLtM",
+            "url":"https://www.youtube.com/embed/u6HG_sqpLtM",
             "IntensiteJour" : 5,
             "PointBienEtre": 8
         },
@@ -86,7 +86,7 @@
             "cat":"Activité sportive relaxante",
             "image":"sportrelax.jpg",
             "desc":"Le yoga est une activité qui aide à réduire le stress et détendre son corps tout en améliorant sa souplesse.",
-            "url":"https://www.youtube.com/watch?v=LXuqEwxIoOs",
+            "url":"https://www.youtube.com/embed/LXuqEwxIoOs",
             "IntensiteJour" : 4,
             "PointBienEtre": 7
         },
@@ -95,7 +95,7 @@
             "cat":"Relaxation",
             "image":"meditation.jpg",
             "desc":"La méditation est une activité procurant une force de réconfort et fournit à la suite de celui-ci un bien être",
-            "url":"https://www.youtube.com/watch?v=Ufohfe3PeRM",
+            "url":"https://www.youtube.com/embed/Ufohfe3PeRM",
             "IntensiteJour" : 4,
             "PointBienEtre": 9
         },
@@ -104,7 +104,7 @@
             "cat":"Relaxation",
             "image":"meditation.jpg",
             "desc":"La méditation est une activité procurant une force de réconfort et fournit à la suite de celui-ci un bien être",
-            "url":"https://www.youtube.com/watch?v=DczdzpTrMFQ",
+            "url":"https://www.youtube.com/embed/DczdzpTrMFQ",
             "IntensiteJour" : 3,
             "PointBienEtre": 8
         },
@@ -113,7 +113,7 @@
             "cat":"Activité sportive relaxante",
             "image":"sportrelax.jpg",
             "desc":"Le yoga est une activité qui aide à réduire le stress et détendre son corps tout en améliorant sa souplesse.",
-            "url":"https://www.youtube.com/watch?v=RzrjyzgjVQA",
+            "url":"https://www.youtube.com/embed/RzrjyzgjVQA",
             "IntensiteJour" : 3,
             "PointBienEtre": 6
         },
@@ -122,7 +122,7 @@
             "cat":"Activité sportive relaxante",
             "image":"sportrelax.jpg",
             "desc":"Le yoga est une activité qui aide à réduire le stress et détendre son corps tout en améliorant sa souplesse.",
-            "url":"https://www.youtube.com/watch?v=W67fgjqfoVQ",
+            "url":"https://www.youtube.com/embed/W67fgjqfoVQ",
             "IntensiteJour" : 4,
             "PointBienEtre": 8
         },
@@ -131,7 +131,7 @@
             "cat":"Relaxation",
             "image":"souffle.jpg",
             "desc":"Prenez le temps de respirer et apprenez comment bien respirer ",
-            "url":"https://www.youtube.com/watch?v=qdKIVTCB5yY",
+            "url":"https://www.youtube.com/embed/qdKIVTCB5yY",
             "IntensiteJour" : 1,
             "PointBienEtre": 5
         }
