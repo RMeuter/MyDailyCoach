@@ -143,7 +143,7 @@ header {
   width: 100%;
   text-align: center;
   background-color: #FDAB72;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   box-shadow: 0px 2px 10px grey;
 }
 

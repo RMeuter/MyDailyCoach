@@ -1,30 +1,34 @@
 <template>
   <div class="p-2">
     <b-container>
-      <b-row>
-        <b-button class="back" to="/activites">Retour aux activitées</b-button>
-        <h2 class="col-12 text-center m-3">
+      <b-row class="pb-3">
+        <b-button class="back" to="/activites" variant="info">Retour aux activitées</b-button>
+      </b-row>
+      
+      <b-row class="titre mb-5" :style="css_styles">
+        <h2 :style="css_styles" class="col-12 text-center mt-2 pt-3">
           <span v-show="estRecommande"> Ma Daily activité :</span>
           {{activite.nom}}
         </h2>
-        <h5 class="col-12 text-left mb-5">Catégorie : {{activite.categorie}}</h5>
-        <h5 v-show="estRecommande" class="col-12 mb-5">Vous obtenez {{activite.PointBienEtre}} points Bien-Etre</h5>
+        <h5 class="col-12 text-left mb-3">Catégorie : {{activite.categorie}}</h5>
+        <h5 v-show="estRecommande" class="col-12 mb-3">Vous obtenez {{activite.PointBienEtre}} points Bien-Etre</h5>
       </b-row>
-        <b-row>
-            <b-card :style="css_styles" :img-src="get_img_activite()" img-alt="Card image" img-left class="mb-3 col-12 border-dark">
-              <b-card-text>
-                {{activite.description}}
-              </b-card-text>
-            </b-card>
-            <b-col cols="12" class=" border-dark rounded" :style="css_styles">
-                <b-embed
-                    type="iframe"
-                    aspect="16by9"
-                    :src="activite.url"
-                    allowfullscreen
-                ></b-embed>
-            </b-col>
-        </b-row>
+
+      <b-row :style="css_styles" class="border-dark">
+        <b-card :style="css_styles" :img-src="get_img_activite()" img-alt="Card image" img-left class="mb-3 p-0 col-12 ">
+          <b-card-text>
+            {{activite.description}}
+          </b-card-text>
+        </b-card>
+        <b-col cols="12" class="rounded pt-2 pb-2"  >
+          <b-embed
+              type="iframe"
+              aspect="16by9"
+              :src="activite.url"
+              allowfullscreen
+          ></b-embed>
+        </b-col>
+      </b-row>
     </b-container>
   </div>
 </template>
@@ -60,3 +64,11 @@ export default {
   }
 };
 </script>
+<style scoped>
+ .container{
+    background-color: ;
+  }
+.border-dark{
+  border: 2px solid;
+}
+</style>
