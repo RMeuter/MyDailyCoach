@@ -27,11 +27,29 @@
             "IntensiteJour" : 10,
             "PointBienEtre": 7
         },
+         {
+            "nom":"Entrainement cardio",
+            "cat":"Activité sportive intense",
+            "image":"souffle.jpg",
+            "desc":"Musclez vous et améliorez votre système cardiaque grâce aux entraînements cardio.",
+            "url":"https://www.youtube.com/watch?v=_p9gauFHW4k",
+            "IntensiteJour" : 10,
+            "PointBienEtre": 7
+        },
+                 {
+            "nom":"Endurance",
+            "cat":"Activité sportive intense",
+            "image":"souffle.jpg",
+            "desc":"Gagnez en résistance, vitesse et agilité grâce à des exercices d'endurance",
+            "url":"https://www.youtube.com/watch?v=5uVaKjtJHN8",
+            "IntensiteJour" : 8,
+            "PointBienEtre": 8
+        },
         {
-            "nom":"Yoga anti stress",
+            "nom":"Yoga - anti stress",
             "cat":"Relaxation",
             "image":"souffle.jpg",
-            "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
+            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
             "url":"https://www.youtube.com/watch?v=BHIY4jSh3OY",
             "IntensiteJour" : 4,
             "PointBienEtre": 8
@@ -40,7 +58,7 @@
             "nom":"Yoga",
             "cat":"Activité sportive relaxante",
             "image":"souffle.jpg",
-            "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
+            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
             "url":"https://www.youtube.com/watch?v=_mXncvpI950",
             "IntensiteJour" : 5,
             "PointBienEtre": 8
@@ -62,7 +80,44 @@
             "url":"https://www.youtube.com/watch?v=u6HG_sqpLtM",
             "IntensiteJour" : 5,
             "PointBienEtre": 8
+        },
+        {
+            "nom":"Yoga - relaxation",
+            "cat":"Activité sportive relaxante",
+            "image":"souffle.jpg",
+            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
+            "url":"https://www.youtube.com/watch?v=LXuqEwxIoOs",
+            "IntensiteJour" : 4,
+            "PointBienEtre": 7
+        },
+        {
+            "nom":"Meditation pour calmer son anxiété",
+            "cat":"Relaxation",
+            "image":"meditation.jpg",
+            "desc":"La méditation est une activité procurant une force de réconfort et fournit à la suite de celui-ci un bien être",
+            "url":"https://www.youtube.com/watch?v=Ufohfe3PeRM",
+            "IntensiteJour" : 4,
+            "PointBienEtre": 9
+        },
+         {
+            "nom":"Meditation - relaxation",
+            "cat":"Relaxation",
+            "image":"meditation.jpg",
+            "desc":"La méditation est une activité procurant une force de réconfort et fournit à la suite de celui-ci un bien être",
+            "url":"https://www.youtube.com/watch?v=DczdzpTrMFQ",
+            "IntensiteJour" : 3,
+            "PointBienEtre": 8
+        },
+        {
+            "nom":"Yoga - souplesse",
+            "cat":"Activité sportive relaxante",
+            "image":"souffle.jpg",
+            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
+            "url":"https://www.youtube.com/watch?v=RzrjyzgjVQA",
+            "IntensiteJour" : 3,
+            "PointBienEtre": 6
         }
+
     ]
 
 }
