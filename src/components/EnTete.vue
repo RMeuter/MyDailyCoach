@@ -24,7 +24,7 @@
         <b-row>        
           <b-collapse id="collapse-1" class="mt-2 col-12">
             <b-card class="row ">
-              <b-col class="m-4">
+              <b-col class="mb-4">
                 <h4 class="card-text m-4">Mes parametres capteur :</h4>
                   <b-form-checkbox v-model="Pas" size="lg" switch>
                     Parametre capteur pas
@@ -38,7 +38,7 @@
                     </b-button>
                   </b-col>
               </b-col>
-              <b-col class="m-4">
+              <b-col class="mb-4">
                 <h4 class="card-text m-4">Autre parametre :</h4>
                   <b-form-checkbox v-model="Presentation" size="lg" switch>
                     Affichez le menue de présentation
