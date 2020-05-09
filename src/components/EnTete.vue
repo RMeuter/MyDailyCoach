@@ -3,6 +3,7 @@
     <!-- ##################################### Mode connecter ######################################### !-->
     <template v-if="user.loggedIn && $route.name != 'signin'">
       <b-container >
+        <div class="test">
         <b-row align-h="center">
           <b-col lg="11">
             <b-navbar toggleable="lg" type="light" >
@@ -19,9 +20,10 @@
             </b-navbar>
           </b-col>
         </b-row>
+        </div>
         <b-row>        
           <b-collapse id="collapse-1" class="mt-2 col-12">
-            <b-card class="row text-left">
+            <b-card class="row ">
               <b-col class="m-4">
                 <h4 class="card-text m-4">Mes parametres capteur :</h4>
                   <b-form-checkbox v-model="Pas" size="lg" switch>
@@ -30,8 +32,8 @@
                   <b-form-checkbox v-model="Sommeil" size="lg" switch>
                     Parametre sommeil
                   </b-form-checkbox>
-                  <b-col offset="4" cols="4" class="p-4">
-                    <b-button @click="modifCapteur()" variant="light">
+                  <b-col offset="4" cols="4" class="pb-4">
+                    <b-button @click="modifCapteur()">
                       J'enregistre ! 
                     </b-button>
                   </b-col>
@@ -41,7 +43,7 @@
                   <b-form-checkbox v-model="Presentation" size="lg" switch>
                     Affichez le menue de présentation
                   </b-form-checkbox>
-                  <b-col offset="4" cols="4" class="p-4">
+                  <b-col offset="4" cols="4" class="pb-4">
                     <b-button @click="Modify_Params([0, Presentation])">
                     J'enregistre !
                     </b-button>
@@ -140,14 +142,11 @@ header {
   color: #41b883;
   width: 100%;
   text-align: center;
-  /*padding-top: 1em;
-  padding-bottom: 1em;*/
-  background-color: #FFA50099;
-  margin-bottom: 1em
+  background-color: #FDAB72;
+  margin-bottom: 1em;
+  box-shadow: 0px 2px 10px grey;
 }
-button.back{
-  border: 1px;
-}
+
 button.nav-link.signout {
   padding: 0.4em;
   background-color: tomato;
