@@ -68,7 +68,10 @@ export default {
  .container{
     background-color: ;
   }
+.titre{
+   box-shadow: 0px 2px 10px grey;
+}
 .border-dark{
-  border: 2px solid;
+   box-shadow: 0px 2px 10px grey;
 }
 </style>
