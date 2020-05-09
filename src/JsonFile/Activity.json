@@ -21,7 +21,7 @@
         {
             "nom":"Course à pied",
             "cat":"Activité sportive intense",
-            "image":"souffle.jpg",
+            "image":"sportintense.jpg",
             "desc":"Courir permet de mettre en mouvement votre corps après une journée de travail assis",
             "url":"https://www.youtube.com/embed/QjoZfET5kJ8",
             "IntensiteJour" : 10,
@@ -30,7 +30,7 @@
          {
             "nom":"Entrainement cardio",
             "cat":"Activité sportive intense",
-            "image":"souffle.jpg",
+            "image":"sportintense.jpg",
             "desc":"Musclez vous et améliorez votre système cardiaque grâce aux entraînements cardio.",
             "url":"https://www.youtube.com/watch?v=_p9gauFHW4k",
             "IntensiteJour" : 10,
@@ -39,7 +39,7 @@
                  {
             "nom":"Endurance",
             "cat":"Activité sportive intense",
-            "image":"souffle.jpg",
+            "image":"sportintense.jpg",
             "desc":"Gagnez en résistance, vitesse et agilité grâce à des exercices d'endurance",
             "url":"https://www.youtube.com/watch?v=5uVaKjtJHN8",
             "IntensiteJour" : 8,
@@ -57,7 +57,7 @@
         {
             "nom":"Yoga",
             "cat":"Activité sportive relaxante",
-            "image":"souffle.jpg",
+            "image":"sportrelax.jpg",
             "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
             "url":"https://www.youtube.com/watch?v=_mXncvpI950",
             "IntensiteJour" : 5,
@@ -66,7 +66,7 @@
         {
             "nom":"Etirements",
             "cat":"Activité sportive relaxante",
-            "image":"souffle.jpg",
+            "image":"sportrelax.jpg",
             "desc":"Eliminez les tensions accumulées dans votre corps au cour de la journée grâce aux étirements",
             "url":"https://www.youtube.com/watch?v=WFXt7H1fEr4&feature=youtu.be",
             "IntensiteJour" : 7,
@@ -84,8 +84,8 @@
         {
             "nom":"Yoga - relaxation",
             "cat":"Activité sportive relaxante",
-            "image":"souffle.jpg",
-            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
+            "image":"sportrelax.jpg",
+            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre son corps tout en améliorant sa souplesse.",
             "url":"https://www.youtube.com/watch?v=LXuqEwxIoOs",
             "IntensiteJour" : 4,
             "PointBienEtre": 7
@@ -111,11 +111,29 @@
         {
             "nom":"Yoga - souplesse",
             "cat":"Activité sportive relaxante",
-            "image":"souffle.jpg",
-            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre votre corps tout en améliorant sa souplesse.",
+            "image":"sportrelax.jpg",
+            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre son corps tout en améliorant sa souplesse.",
             "url":"https://www.youtube.com/watch?v=RzrjyzgjVQA",
             "IntensiteJour" : 3,
             "PointBienEtre": 6
+        },
+        {
+            "nom":"Yoga - mal de dos",
+            "cat":"Activité sportive relaxante",
+            "image":"sportrelax.jpg",
+            "desc":"Le yoga est une activité qui aide à réduire le stress et détendre son corps tout en améliorant sa souplesse.",
+            "url":"https://www.youtube.com/watch?v=W67fgjqfoVQ",
+            "IntensiteJour" : 4,
+            "PointBienEtre": 8
+        },
+        {
+            "nom":"Respiration",
+            "cat":"Relaxation",
+            "image":"souffle.jpg",
+            "desc":"Prenez le temps de respirer et apprenez comment bien respirer ",
+            "url":"https://www.youtube.com/watch?v=qdKIVTCB5yY",
+            "IntensiteJour" : 1,
+            "PointBienEtre": 5
         }
 
     ]
