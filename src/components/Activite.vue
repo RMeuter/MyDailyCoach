@@ -14,12 +14,14 @@
         <h5 v-show="estRecommande" class="col-12 mb-3">Vous obtenez {{activite.PointBienEtre}} points Bien-Etre</h5>
       </b-row>
 
-      <b-row :style="css_styles" class="border-dark">
-        <b-card :style="css_styles" :img-src="get_img_activite()" img-alt="Card image" img-left class="mb-3 p-0 col-12 ">
-          <b-card-text>
-            {{activite.description}}
-          </b-card-text>
-        </b-card>
+      <b-row :style="css_styles" class="border-dark pt-3">
+        <b-col lg="4" class="pb-3" align="center">  
+          <b-img thumbnail fluid :src="get_img_activite(activite.get_image())" :alt="activite.nom">yep</b-img>
+        </b-col>
+        <b-col lg="8" class="">  
+          <p>{{activite.description}}</p>
+        </b-col>
+        
         <b-col cols="12" class="rounded pt-2 pb-2"  >
           <b-embed
               type="iframe"
