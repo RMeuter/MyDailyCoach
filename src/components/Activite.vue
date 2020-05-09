@@ -6,7 +6,7 @@
       </b-row>
       
       <b-row class="titre mb-5" :style="css_styles">
-        <h2 :style="css_styles" class="col-12 text-center mt-2 pt-3">
+        <h2 class="col-12 text-center mt-2 pt-3">
           <span v-show="estRecommande"> Ma Daily activité :</span>
           {{activite.nom}}
         </h2>
