@@ -38,7 +38,7 @@
         },
         {
             "nom":"Yoga",
-            "cat":"Activité sportive",
+            "cat":"Activité sportive relaxante",
             "image":"souffle.jpg",
             "desc":"Profitez d'une bonne musique et soufflez un coup sur votre canapé",
             "url":"https://www.youtube.com/watch?v=_mXncvpI950",
@@ -47,7 +47,7 @@
         },
         {
             "nom":"Etirements",
-            "cat":"Activité sportive",
+            "cat":"Activité sportive relaxante",
             "image":"souffle.jpg",
             "desc":"Eliminez les tensions accumulées dans votre corps au cour de la journée grâce aux étirements",
             "url":"https://www.youtube.com/watch?v=WFXt7H1fEr4&feature=youtu.be",
