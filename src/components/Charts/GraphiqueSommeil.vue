@@ -3,7 +3,6 @@
 import { Bar } from "vue-chartjs";
 import data from "../../JsonFile/userDataFit"
 
-
 var donneesCapteur = data.donneesJournaliere.CapteurSommeil; 
 
 export default {

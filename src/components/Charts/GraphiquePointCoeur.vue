@@ -5,7 +5,7 @@ import data from "../../JsonFile/userDataFit"
 
 
 var donneesCapteur = data.donneesJournaliere.CapteurPointCoeur; 
-var heure = data.time;
+var heure = data.donneesJournaliere.heure;
 
 export default {
   extends: Bar,
@@ -23,6 +23,7 @@ export default {
     },
     faireArrayHeure(){
       let arrayHeureMinute = [];
+
       heure.forEach(temps =>{
         arrayHeureMinute.push((new Date(temps)).toTimeString().slice(0,5))
       })
@@ -35,7 +36,7 @@ export default {
         labels: this.faireArrayHeure(),
         datasets: [
             {
-              label: 'Minutes consacrées pour les points coeurs',
+              label: 'Minutes consacrés pour les points coeurs',
               backgroundColor: '#2090DB',
               data: this.doHeartPoint(1),
               type: "line"
