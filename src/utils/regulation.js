@@ -1,5 +1,5 @@
 module.exports = {
-    // ######### Entre Regulation (afin déviter le code spagetti et faire une code flexible sur les données):
+    // ######### Regulation est json structure l'algorithme de recommdation et évite le code spagetti + permet un code flexible sur les données
 
     CapteurPas:{
         // Les pas sont issues de com.google.step_count.delta

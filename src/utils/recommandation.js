@@ -1,8 +1,4 @@
 /**
- * Savoir l'intensité d'éffort de la journée sera basé sur 
- * l'éffort et le temps d'éffort 
- * Au début recommandation aléatoire, puis avec les points
- * et enfin algo ML
  * 
  * La forme de data doit etre de la manière suivante :
  * data = {
@@ -20,17 +16,17 @@
  *              }
  *          }
  *        }
+ * 
  * Pour permettre l'ajout des points l'algorithme essayer de voir du coté de sa moyenne
  * habituelle on prend le summary a partir des 3 dernières semaines (temps de mise en place des habitudes)
  * l'API google nous fournit sa moyenne directement. 
- * Si passe au dessus il y a plus d'éffort..
+ * Si passe au dessus il y a plus d'éffort fournit dans la journée de l'utilisateur par rapport à ces habitudes..
  * On additionne par variable et par le taux de dépassement
  * exemple : moyenne 1000 pas jour
  * S'il fait 3000 pas (il a un ratio de 3x son score habituelle donc
  * plus trois points !)
  * => Ceci est pris en compte par le parametre regulation qui adapte les calcul et
  * l'ajout de point selon les capteurs.
-  Nom de la fonction : calculPointIntensiteJournaliere
  */
 
 export default function (data, regulation, Activites){
@@ -47,7 +43,6 @@ export default function (data, regulation, Activites){
                     break;   
                 }
             }
-            //console.log(pointIntensiteDay, resultat, moyenne3SemaineCapteur);
         } catch (e) {
             console.log(e);
             console.log("Attention la valeur "+data.ArrayLiaison[liaison][1]+ " est manquante dans régulation");
@@ -57,7 +52,7 @@ export default function (data, regulation, Activites){
     for(let capteur in capteurDispo){
         pointMoyen += pointIntensiteDay[capteur]/capteurDispo[capteur];
     }
-    return trouveActivite (pointMoyen, Activites.activite); // ############ A prendre en compte lorsqu'integration a firebase ! => Activites.activite devient Activites !  
+    return trouveActivite (pointMoyen, Activites); 
  }
 
 function trouveActivite (noteJournaliere, Activites){
@@ -70,6 +65,6 @@ function trouveActivite (noteJournaliere, Activites){
             array.push(Activites[activite])
         }
     }
-    let nbAle = Math.round(Math.random()*(array.length-1)); // ici il faudra remplacer par un algo de recommandation
+    let nbAle = Math.round(Math.random()*(array.length-1)); // L'algorithme de recommandation sera appeler ici
     return array[nbAle]
 }

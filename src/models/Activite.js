@@ -1,7 +1,7 @@
 export default class Activite {
 
     static CATEGORIE = ['Activité sportive relaxante', 'Activité sportive intense', 'Relaxation'];
-    // Choix des couleurs :https://htmlcolorcodes.com/fr/
+
     static COULEUR = ["#FFA500B3","#FF0000B3","#ADFF2FB3"]
     constructor(a_nom, a_pic, a_desc, a_cat, a_url, a_intenDay, a_ptBienEtre) {
 
@@ -9,8 +9,6 @@ export default class Activite {
             throw new Error(`Parameter "Activite's nom" is mandatory`);
         }
         if (typeof a_url === 'undefined') {
-            //Utilisation d'url youtube spéciale tel que https://www.youtube.com/embed/QjoZfET5kJ8 (il y a embed en plus)
-            // il faut aller sur la vidéo => partage => intégré et tu recup l'url
             throw new Error(`Parameter "Activite's flag" is mandatory`);
         }
         if (typeof a_intenDay === 'undefined') {

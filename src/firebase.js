@@ -17,8 +17,3 @@
  appId: "1:776464730949:web:28ccf2bd57a7afa5350c2c",
  measurementId: "G-KM3FPZMGT5"
   };
-/*
-firebase.initializeApp(config);
-
-export const db = firebase.firestore();
-*/
