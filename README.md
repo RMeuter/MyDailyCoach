@@ -65,7 +65,9 @@ Le fichier `./src/components/Signin.vue` contient une méthode signin permettant
     * D'intégrer des paramètres d'initialisation du profil, et des informations supplémentaires telles que le nom et prénom dans la collection "ExtraInfosUser" de firebase.  
 * Sinon, elle appelle implicitement par un événement capturé dans `./src/main.js` avec la fonction firebase `firebase.auth().onAuthStateChanged` ensuite elle appelle la méthode fetchUser du fichier `./src/store/index.js`. Cette méthode récupère et intègre les informations paramètre, etc... grâce à l'aide de uid de l'utilisateur pour enfin l'intégrer dans firebase (collection nommée "ExtraInfosUser")
 
-Une fois l'utilisateur authentifié, ces données sont accessibles par le fichier `./src/store/index.js`.
+Une fois l'utilisateur authentifié, ces données sont accessibles par le fichier `./src/store/index.js`. 
+
+*Axe d'amélioration :* A l'avenir nous compotons simplifier la liaison entre le store et firebase par le plugin `vuefire`
 
 ##### 2. Gestion des paramètres
 
