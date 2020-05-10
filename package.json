@@ -28,7 +28,6 @@
     "vue-axios": "^2.1.5",
     "vue-chartjs": "^3.5.0",
     "vue-firestore": "^0.3.30",
-    "vue-gapi": "^0.2.2",
     "vue-router": "^3.1.6",
     "vuex": "^3.1.3"
   },

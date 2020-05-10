@@ -8,10 +8,6 @@ import * as firebase from "firebase";
 import VueFirestore from 'vue-firestore';
 import config from "./firebase"
 
-// ########### API ########### 
-import VueGAPI from "vue-gapi";
-import apiConfig from "./ApiConnect"
-
 // ########### Bootstrap #############
 import BootstrapVue from "bootstrap-vue"
 import "bootstrap/dist/css/bootstrap.css"
@@ -23,8 +19,8 @@ import "@/helpers/filters";
 
 // ############## firebase ##############
 firebase.initializeApp(config);
-export const db = firebase.firestore();
 
+export const db = firebase.firestore();
 
 Vue.config.productionTip = false
 
@@ -56,7 +52,6 @@ firebase.auth().onAuthStateChanged(user => {
 // ############## Pluggin ##############
 Vue.use(BootstrapVue);
 Vue.use(VueFirestore);
-Vue.use(VueGAPI, apiConfig);
 
 // ############## Vue ##############
 new Vue({
