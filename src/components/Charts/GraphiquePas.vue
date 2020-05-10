@@ -5,7 +5,7 @@ import data from "../../JsonFile/userDataFit"
 
 
 var donneesCapteur = data.donneesJournaliere.CapteurPas; 
-var heure = data.time;
+var heure = data.donneesJournaliere.heure;
 
 export default {
   extends: Line,
