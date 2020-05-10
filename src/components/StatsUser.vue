@@ -1,12 +1,16 @@
 <template>
   <div>
-    <b-container v-if="user.data && niveau"> 
+    <b-container v-if="user.data"> 
       <b-row >
         <b-col cols="6">
           <h4> Salut {{user.data.displayName}}</h4>
         </b-col>
-        <!-- ############################# Infos gamifier ############################# !-->     
-        <Profil :user="user" :niveau="niveau" />
+        <!-- ############################# Infos gamifier ############################# !--> 
+        <b-collapse  id = "Profil"  class = "mt-2" > 
+          <b-card > 
+            <Profil :user="user" />
+          </b-card > 
+        </b-collapse > 
       </b-row>
       
       <!-- ############################# Presentation de l'application en trois points ############################# !-->     
@@ -29,7 +33,7 @@
 
       <b-row class="mt-3 ">
         <b-col align="center"> 
-          <b-button class="col-4" variant = "info" @click="getInfos()">Mes informations</b-button>
+          <b-button  v-b-toggle.Profil  variant = "primary" > Toggle Collapse </b-button> 
         </b-col>
       </b-row>
       
@@ -63,7 +67,6 @@
         </b-col>        
       </b-row>          
     </b-container>
-
     <b-container v-else>
       <div style="width:100%;height:0;padding-bottom:57%;position:relative;">
         <iframe 
@@ -96,11 +99,12 @@ import regulation from "../utils/regulation"
 import calculPointIntensiteJournaliere from "../utils/recommandation"
 
 
+
 export default {
   name: "StatsUser",
   firestore() {
     return{ 
-      activites : db.collection("Activites")
+      activites : db.collection("Activites"),
     }
   },
   components:{
@@ -111,38 +115,29 @@ export default {
     Profil,
   },
   methods:{
-     get_lvlImg(){
-      return require(`../assets/LevelImage/${this.niveau.photoLevel}`)
-    },
-    progress(){
-      return {width :Math.round(100*((this.user.data.pointBienEtre-this.niveau.nombreDePoint)/this.niveau.niveauSup))}
-    },
     ...mapActions([
       "Add_PointBienEtre"
     ]),
-    getRecommandActivite(){
+    async getRecommandActivite(){
       let a_activite = calculPointIntensiteJournaliere(data, regulation, this.activites);
       const a_new_activite = new Activite(
         a_activite.nom,
-            a_activite.image,
-            a_activite.desc,
-            a_activite.cat,
-            a_activite.url,
-            a_activite.IntensiteJour,
-            a_activite.PointBienEtre,
-          );
+        a_activite.image,
+        a_activite.desc,
+        a_activite.cat,
+        a_activite.url,
+        a_activite.IntensiteJour,
+        a_activite.PointBienEtre,
+      );
       return a_new_activite
     },
   },
   computed: {
     ...mapGetters({
       user: "user",
-      niveau : "niveauObtenu",
       estMoment : "estMomentRecommandation"
     }),
-   
   },
-  
 };
 
 </script>
