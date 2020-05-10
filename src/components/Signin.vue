@@ -1,20 +1,16 @@
 <template>
   <div>
-    <b-form-checkbox v-model="checked1" name="check-button">
-      Réinitialisation ou intégration des parametres : <strong>{{ checked1 }}</strong>
-    </b-form-checkbox>
     <button @click="signin" class="btn">
-      Connection par Google uniquement
+      Connexion par Google uniquement
     </button>
     <div class="success" v-if="success">{{success}}</div>
   </div>
 </template>
 
+
 <script>
 import * as firebase from "firebase";
 import { db } from "../main.js";
-
-
 
 export default {
   name: "Signin",
@@ -22,13 +18,10 @@ export default {
     return {
       error: "",
       success: "",
-      checked1:true
     };
   },
   methods: {
     signin() {
-      // Comprendre la connexion par google :
-      // https://firebase.google.com/docs/auth/web/google-signin
       this.error = "";
       this.success = "";
       var provider = new firebase.auth.GoogleAuthProvider();
@@ -36,8 +29,7 @@ export default {
       .auth()
       .signInWithPopup(provider)
       .then( data => {
-        if (data.additionalUserInfo.isNewUser || this.checked1){
-          // savoir si nouveau visiteur : result.additionalUserInfo.isNewUser = false ou true
+        if (data.additionalUserInfo.isNewUser){
           data.user.updateProfile(
             {
             displayName: data.user.displayName
@@ -51,7 +43,6 @@ export default {
           });
           
           db.collection("UserExtraInfos").doc(data.user.uid).set({
-            // implementation des réglages de base
             momentRecommandation: [20,30],
             pointBienEtre: 0,
             dernierRecommandationVu: (new Date()).getTime(),
