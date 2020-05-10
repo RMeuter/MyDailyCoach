@@ -2,7 +2,7 @@
   <div class="p-2">
     <b-container>
       <b-row class="pb-3">
-        <b-button class="back" to="/activites" variant="info">Retour aux activitées</b-button>
+        <b-button class="back" to="/activites" variant="info">Retour aux activités</b-button>
       </b-row>
       
       <b-row class="titre mb-5" :style="css_styles">
@@ -16,7 +16,7 @@
 
       <b-row :style="css_styles" class="border-dark pt-3">
         <b-col lg="4" class="pb-3" align="center">  
-          <b-img thumbnail fluid :src="get_img_activite(activite.get_image())" :alt="activite.nom">yep</b-img>
+          <b-img thumbnail fluid :src="get_img_activite(activite.get_image())" :alt="activite.nom"></b-img>
         </b-col>
         <b-col lg="8" class="">  
           <p>{{activite.description}}</p>
@@ -51,12 +51,11 @@ export default {
   },
   computed:{
     css_styles() {
-      return { "background-color": this.activite.couleur }; //création dynamique de style css
+      return { "background-color": this.activite.couleur }; 
     },
   },
   beforeRouteEnter(to, from, next) {
     next(vm => {
-      //si team n'a pas été communiqué via l'attribut props, on redirige vers la vue master
       if (typeof vm.activite === "undefined") {
         next({ name: "activites" });
       } else {
@@ -67,9 +66,6 @@ export default {
 };
 </script>
 <style scoped>
- .container{
-    background-color: ;
-  }
 .titre{
    box-shadow: 0px 2px 10px grey;
 }

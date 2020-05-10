@@ -2,12 +2,11 @@
   <div id="app">
     
     <Entete/>
-    <!-- ############################## Transition #################################  !-->
+    
     <transition name="fade" mode="out-in">
       <router-view class="view"></router-view>
     </transition>
     
-    <!-- ############################## Footer #################################  !-->
     <BasDePage/>
   </div>
 </template>

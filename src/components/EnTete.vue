@@ -11,9 +11,9 @@
               <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
               <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav class="ml-auto">
-                  <b-button v-show="$route.name == 'stats'" variant="white" class="back" to="/activites">Activitées</b-button>                                         
+                  <b-button v-show="$route.name == 'stats'" variant="white" class="back" to="/activites">Activités</b-button>                                         
                   <b-button v-show="$route.name == 'activites' || $route.name == 'detail'" variant="white" class="back" to="/stats">Accueil</b-button>                  
-                  <b-button v-b-toggle.collapse-1 variant="white">Paramètre</b-button>               
+                  <b-button v-b-toggle.collapse-1 variant="white">Paramètres</b-button>               
                   <b-button variant="danger" @click.prevent="signOut">Se déconnecter</b-button>
                 </b-navbar-nav>
               </b-collapse>
@@ -25,12 +25,12 @@
           <b-collapse id="collapse-1" class="mt-2 col-12">
             <b-card class="row ">
               <b-col class="mb-4">
-                <h4 class="card-text m-4">Mes parametres capteur :</h4>
+                <h4 class="card-text m-4">Mes paramètres capteurs :</h4>
                   <b-form-checkbox v-model="Pas" size="lg" switch>
-                    Parametre capteur pas
+                    Activation capteur pas
                   </b-form-checkbox>
                   <b-form-checkbox v-model="Sommeil" size="lg" switch>
-                    Parametre sommeil
+                    Activation capteur sommeil
                   </b-form-checkbox>
                   <b-col offset="4" cols="4" class="pb-4">
                     <b-button @click="modifCapteur()">
@@ -39,9 +39,9 @@
                   </b-col>
               </b-col>
               <b-col class="mb-4">
-                <h4 class="card-text m-4">Autre parametre :</h4>
+                <h4 class="card-text m-4">Autre paramètre :</h4>
                   <b-form-checkbox v-model="Presentation" size="lg" switch>
-                    Affichez le menue de présentation
+                    Afficher le menu de présentation
                   </b-form-checkbox>
                   <b-col offset="4" cols="4" class="pb-4">
                     <b-button @click="Modify_Params([0, Presentation])">
