@@ -2,6 +2,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import * as firebase from "firebase";
+
 // ############# Components ############
 import Signin from "../components/Signin";
 import Stats from '../components/StatsUser.vue';
@@ -27,24 +28,24 @@ const router = new Router({
             name: 'stats',
             component: Stats,
             meta: {
-                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
+                requiresAuth: true
             }
         },
         {
-            path: '/activites',//activities',
+            path: '/activites',
             name: 'activites',
             component: Activites,
             meta: {
-                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
+                requiresAuth: true
             }
         },
         {
-            path: '/activites/:nomActivite',//activities',
+            path: '/activites/:nomActivite',
             name: 'detail',
             component: Activite,
             props:true,
             meta: {
-                requiresAuth: false // ############### Attention pour un accès plus rapide en mode test mis en place du false
+                requiresAuth: true
             }
         },
     ]
