@@ -5,7 +5,8 @@ export default function(idParametre,parametreChangeant){
         },
         {
             "useParametre.capteurPas":null,
-        },{
+        },
+        {
             "useParametre.capteurSommeil":null,
         }
     ]
