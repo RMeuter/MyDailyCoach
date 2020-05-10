@@ -1,4 +1,4 @@
-{
+module.exports = {
     
     "aggregateBy": [
         { 
@@ -9,14 +9,10 @@
             "dataSourceId":"derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
         }, 
         {
-            "dataTypeName":"com.google.weight",
-            "dataSourceId":"derived:com.google.weight:com.google.android.gms:merge_weight"
-        },
-        {
             "dataTypeName":"com.google.activity.segment"
         },
         {
-            "dataTypeName":"com.google.heart_rate.summary"
+            "dataTypeName":"com.google.heart_rate.bpm"
         }
     ]
 }
