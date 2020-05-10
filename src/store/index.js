@@ -24,18 +24,6 @@ export default new Vuex.Store(
             dateRecommand.setHours(state.user.data.momentRecommandation[0]);
             dateRecommand.setMinutes(state.user.data.momentRecommandation[1]);
             return date >= dateRecommand && date <= dateRecommand.setHours(dateRecommand.getHours() + 4);
-        },
-        niveauObtenu(state){
-            db.collection("niveauUtilisateur")
-            .orderBy("niveauSup", "asc")
-            .get()
-            .then(snapshot => {
-                snapshot.forEach(doc => {
-                    if(state.user.data.pointBienEtre <= doc.data().niveauSup){
-                        return doc.data();
-                    }
-                })
-            });
         }
     },
     mutations: {
