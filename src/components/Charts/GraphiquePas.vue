@@ -1,10 +1,11 @@
 
 <script>
 import { Line } from "vue-chartjs";
-import data from "../../JsonFile/Step.json"
+import data from "../../JsonFile/userDataFit"
 
+
+var donneesCapteur = data.donneesJournaliere.CapteurPas; 
 var heure = data.time;
-var donneesCapteur = data.steps; 
 
 export default {
   extends: Line,

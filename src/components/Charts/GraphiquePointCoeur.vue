@@ -1,10 +1,11 @@
 
 <script>
 import { Bar } from "vue-chartjs";
-import data from "../../JsonFile/Step.json";
+import data from "../../JsonFile/userDataFit"
 
+
+var donneesCapteur = data.donneesJournaliere.CapteurPointCoeur; 
 var heure = data.time;
-var donneesCapteur = data.heart_point; 
 
 export default {
   extends: Bar,
@@ -34,12 +35,12 @@ export default {
         labels: this.faireArrayHeure(),
         datasets: [
             {
-              label: 'Minutes consacrer pour les points coeurs',
+              label: 'Minutes consacrées pour les points coeurs',
               backgroundColor: '#2090DB',
               data: this.doHeartPoint(1),
               type: "line"
             }, {
-              label: 'Point coeur',
+              label: 'Points coeur',
               backgroundColor: '#40A451',
               data: this.doHeartPoint(2),
               type: "bar"
