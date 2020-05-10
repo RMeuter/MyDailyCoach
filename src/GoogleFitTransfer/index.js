@@ -1,71 +1,37 @@
-// ############ Tuto suivie :
-// https://www.youtube.com/watch?v=-yH1ZnZBWyU
+/* eslint-disable no-unused-vars */
 
-// Telecharger postman :
-// https://www.postman.com/downloads/
+var data  = require("../JsonFile/TypeData.js");
+var formateDonnee = require("../GoogleFitTransfer/formationDonne")
+
+/*La forme de data doit etre de la manière suivante :
+ * data = {
+ *          ArrayLiaison:[
+ *              [MoyPasJournalier, CapteurPas],[MoyFrequenceCardiaqueJournaliere, FrequencesCardiaque] 
+ *          ]
+ *          moyennes3SemainesCapteurs: {
+ *              "MoyPasJournalier":5000,
+ *              "MoyFrequenceCardiaqueJournaliere": 90
+ *              },
+ *          donneesJournaliere:{ ## Chaque donné ou array est faite par heure avec l'heure donnée par la ref :"heure"
+ *              "heure": [1587679197864, 1587679197864, 1587679197864, ...], # Donnée en milliseconde
+ *              "CapteurPas": [0, 12, 800, ...],
+ *              "FrequencesCardiaque": [[60, 63, 62],[60, 63],[60, 63, 62, 60, 63, 62], ] ## Ces données peuvent etre désordonner de la sorte 
+ *              }
+ *          }
+ *        }
+ *
+ */ 
 
 
-// import data from "../../JsonFile/TypeData.json"
-// ################## Fonction etc... a mettre dans un fichier a part (car node n'accepte pas les fichier à part.. seul vuejs) ######
-let aggregateBy = [
-    { 
-        "dataTypeName": "com.google.heart_minutes"
-    },
-    {
-        "dataTypeName":"com.google.step_count.delta",
-        "dataSourceId":"derived:com.google.step_count.delta:com.google.android.gms:estimated_steps"
-    }, 
-    {
-        "dataTypeName":"com.google.activity.segment"
-    },
-    {
-        "dataTypeName":"com.google.heart_rate.bpm"
-    }
-]
 
-function takeSleepData(stepArray){
-    //console.log(stepArray)
-    let valueActivity = {
-        "time": [],
-        "steps":[],
-        "activity":[],
-    } 
+let wantData = data.aggregateBy[1];
 
-    for(const dataset of stepArray){
-        valueActivity.time.push(dataset.startTimeMillis);
-        for(const points of dataset.dataset){
-            valueActivity.activity.push([]);
-            for(const steps of points.point){
-                // #### Si besoin de verifier les données
-                //console.log("steps \n\n");
-                //console.log(steps);
-                for(const v of steps.value){
-                    if (v["intVal"]){
-                        valueActivity.activity[valueActivity.activity.length-1].push(v.intVal);
-                    } else if (v["fpVal"]){
-                        valueActivity.activity[valueActivity.activity.length-1].push(v.fpVal);
-                    } else {
-                        console.log("heu non !")
-                    }
-                }
-            }
-        }
-    }
-    return valueActivity;
-}
-
-/*
-Autre type de data :
-=> activity.read
-- com.google.heart_minutes.summary
-- com.google.heart_rate.summary
-- com.google.activity.segment
-- com.google.active_minutes
-=> body.read
-- com.google.heart_rate.bpm
-*/
-let wantData = aggregateBy[2];
-
+/**
+ * 0 : Point Coeur
+ * 1 : Pas
+ * 2 : Activité/Sommeil
+ * 3 : Freq cardiaque
+ */
 
 const express = require("express");
 const app = express();
@@ -78,31 +44,15 @@ const queryParse = require("query-string")
 const bodyParser = require("body-parser")
 const axios = require("axios");
 
+
 // ################ Recupération des clés
 // Happy Evening => 
 var IdClient = "776464730949-n570eg17u5j00g15rpdpu85phhjblvdi.apps.googleusercontent.com";
 var SecretKey = "O2D_8jTV7_R5u4ySAddVCSjA";
 
-// MyDailyCoach =>
-// var IdClient = "869369705480-oqi8167kfnjj8k7gon5fvbj8e2mu7k85.apps.googleusercontent.com"
-// var SecretKey = "vhlZ0IdfUne9mZUvFhFGqKCu"
-
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
-
-/**
- * Voir les liens utiles :
- * - Integration auth :https://developers.google.com/people/quickstart/nodejs
- * - https://developers.google.com/fit/datatypes/activity
- * - Integration auth + data :https://github.com/googleapis/google-api-nodejs-client/tree/master/src/apis/fitness
- * - Integration auth + data :https://stackoverflow.com/questions/52233038/how-to-get-weight-data-from-google-fitness-api
- * - S'entrainer et data : https://developers.google.com/fit/rest/v1/reference/users/dataset/aggregate
- * - https://ithoughthecamewithyou.com/post/export-google-fit-daily-steps-to-a-google-sheet
- * - Integration auth: https://firebase.google.com/docs/auth
- * 
- * 
-*/
 
 app.get("/ting", (req, res) => {
 
@@ -146,8 +96,7 @@ app.get("/steps",async (req, res)=> {
     let stepArray = [];
 
     try {
-        let actuDate = new Date(1587995075358); // En laissant vite comme ça Date (), j'ai la date actuelle !
-        
+        let actuDate = new Date();
         let obj = {
             method: "POST",
             headers: {
@@ -155,13 +104,13 @@ app.get("/steps",async (req, res)=> {
             },
             "Content-Type":"application/json",
             url:"https://www.googleapis.com/fitness/v1/users/me/dataset:aggregate",
-            data: { // Comment faire ces demandes : https://developers.google.com/fit/rest/v1/data-sources
+            data: { 
                 aggregateBy: [
                     wantData
             ],
-                bucketByTime: { durationMillis: 3600000 }, // recuperation par seau de temps (soit des données toutes les heures ici)
-                startTimeMillis:  actuDate.setDate(actuDate.getDate() - 1), // date du jour de départ
-                endTimeMillis: actuDate.setDate(actuDate.getDate() + 1)  // date du jour de fin
+                bucketByTime: { durationMillis: 3600000 }, 
+                startTimeMillis:  actuDate.setDate(actuDate.getDate() - 1),
+                endTimeMillis: actuDate.setDate(actuDate.getDate() + 1) 
               },
         }
         const result = await axios(obj);
@@ -170,7 +119,7 @@ app.get("/steps",async (req, res)=> {
         console.log("erreur: "+e );
     }
     try {
-        console.log(takeSleepData(stepArray));
+        console.log(formateDonnee(stepArray));
     } catch(e){
         console.log(e);
     }
