@@ -92,13 +92,17 @@ import { db } from "../main.js";
 
 // ##### Donnee importer et fonction rajouter
 import data from "../JsonFile/userDataFit"
-import activites from "../JsonFile/Activity.json"
 import regulation from "../utils/regulation"
 import calculPointIntensiteJournaliere from "../utils/recommandation"
 
 
 export default {
   name: "StatsUser",
+  firestore() {
+    return{ 
+      activites : db.collection("Activites")
+    }
+  },
   components:{
     GraphiquePas,
     GraphiquePointCoeur,
@@ -117,7 +121,7 @@ export default {
       "Add_PointBienEtre"
     ]),
     getRecommandActivite(){
-      let a_activite = calculPointIntensiteJournaliere(data, regulation, activites);
+      let a_activite = calculPointIntensiteJournaliere(data, regulation, this.activites);
       const a_new_activite = new Activite(
         a_activite.nom,
             a_activite.image,
@@ -129,14 +133,6 @@ export default {
           );
       return a_new_activite
     },
-    getInfos(){
-      console.log(this.infos)
-    }
-  },
-  firestore() {
-    return{ 
-      infos : db.collection("UserExtraInfos")
-    }
   },
   computed: {
     ...mapGetters({
@@ -156,9 +152,5 @@ export default {
   background-color: #FDAB72;
   color: black;
   border: none;
-}
-button.navlink.getInfos(){
-  background-color: tomato;
-   border-radius: 5px;
 }
 </style>

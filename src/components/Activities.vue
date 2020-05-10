@@ -7,7 +7,7 @@
             <b-list-group-item href="#" active 
             class="flex-column align-items-start bg-dark"
             v-for="activite in actiz" 
-            :key="activite">
+            :key="activite.nom">
               <b-container>
                 <b-row>
                   <b-col class="mb-4 text-center">
@@ -16,7 +16,7 @@
                 </b-row>
                 <b-row>
                   <b-col>  
-                    <b-img thumbnail fluid :src="get_img_activite(activite.get_image())" :alt="activite.nom">yep</b-img>
+                    <b-img thumbnail fluid :src="get_img_activite(activite.get_image())" :alt="activite.nom"></b-img>
                   </b-col>
                   <b-col>
                     <p class="mb-1">
@@ -31,7 +31,7 @@
                         <b-badge variant="primary" pill>{{activite.IntensiteJour}}</b-badge>
                       </b-list-group-item>
                       <b-list-group-item class="bg-dark">
-                        Point Bien etre en jeu :
+                        Point Bien-Etre en jeu :
                         <b-badge variant="primary" pill>{{activite.PointBienEtre}}</b-badge>
                       </b-list-group-item>
                     </b-list-group> 
@@ -47,16 +47,16 @@
 </template>
 
 <script>
-//import { db } from '../main.js';
-import data from "../JsonFile/Activity.json";
+
+
 import Activite from "../models/Activite"
+import {db} from "../main";
 
 export default {
   name: "Activites",
-  data(){
+  firestore(){
     return{
-      activities:data.activite,
-      newActivitie:""
+      activites : db.collection("Activites")
     }
   },
   methods:{
@@ -67,10 +67,8 @@ export default {
   computed:{
     actiz(){
       let mapped_teams = [];
-      if (data.activite.length) {
-        console.log(data.activite)
-        data.activite.forEach(a_activite => {
-          console.log(a_activite);
+      if (this.activites.length) {
+        this.activites.forEach(a_activite => {
           const a_new_activite = new Activite(
             a_activite.nom,
             a_activite.image,
@@ -111,10 +109,4 @@ a {
   justify-content: center;
 }
 
-
-h2 {
-  font-size: 0.6em;
-  margin: 0;
-  padding: 0;
-}
 </style>

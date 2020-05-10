@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import dictLevel from "../JsonFile/levelUser.json"
-
 import { db } from "../main.js";
 import fonctionChangementParametre from "./construitJSONParametre"
 
@@ -28,12 +26,16 @@ export default new Vuex.Store(
             return date >= dateRecommand && date <= dateRecommand.setHours(dateRecommand.getHours() + 4);
         },
         niveauObtenu(state){
-            for (var i = 0; i < dictLevel.niveau.length; i++){
-                if(state.user.data.pointBienEtre <= dictLevel.niveau[i].niveauSup){
-                    return dictLevel.niveau[i];
-                } 
-            }
-            dictLevel.niveau[0]
+            db.collection("niveauUtilisateur")
+            .orderBy("niveauSup", "asc")
+            .get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+                    if(state.user.data.pointBienEtre <= doc.data().niveauSup){
+                        return doc.data();
+                    }
+                })
+            });
         }
     },
     mutations: {
